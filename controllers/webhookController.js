@@ -22,15 +22,29 @@ exports.webhook = function(request, response){
 };
 
 exports.webhookPost = function(request, response){
-    var params = request.body;
+    let params = request.body;
 
-    if(params.object && params.entry){
+    if(params.object == 'page'){
         console.log("EVENT RECEIVED");
+
+        params.entry.forEach(function(entry) {
+
+            // Gets the body of the webhook event
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
+          
+            // Get the sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+          
+          });
         
-        (params.entry).forEach(element => {
-            (element.messaging).forEach(el=>{
-                response.send(el.message);
-            });
+       (params.entry).forEach(element => {
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
+
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
         });
     }
     else {
