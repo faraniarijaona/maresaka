@@ -37,7 +37,7 @@ exports.message = function(sender_psid, received_message){
                     }
                 ],
                 }]
-            }
+                }
             }
         }
     }
