@@ -26,6 +26,7 @@ exports.webhook = function(request, response){
 
 exports.webhookPost = function(request, response){
     var params = request.body;
+    response.send('');
 
     if(params.object && params.entry){
         console.log("EVENT RECEIVED");
@@ -45,9 +46,6 @@ exports.webhookPost = function(request, response){
             if(webhook_event.postback){
                 eventController.postback(sender_psid, webhook_event.postback);
             }
-
-
-
         });
     }
     else {
