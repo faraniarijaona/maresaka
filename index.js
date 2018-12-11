@@ -1,5 +1,5 @@
 'use strict';
-let webhook_controller = require('./controllers/webhookController');
+var webhook_controller = require('./controllers/webhookController');
 
 const 
     express = require('express'),

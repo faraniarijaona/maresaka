@@ -22,19 +22,16 @@ exports.webhook = function(request, response){
 };
 
 exports.webhookPost = function(request, response){
-    let params = request.body;
-    console.log(params);
-    if(params.object == 'page'){
+    var params = request.body;
+
+    if(params.object && params.entry){
         console.log("EVENT RECEIVED");
-       (params.entry).forEach(element => {
-            let webhook_event = params.entry.messaging[0];
-            console.log(webhook_event);
-
-            let sender_psid = webhook_event.sender.id;
-            console.log('Sender PSID: ' + sender_psid);
+        
+        (params.entry).forEach(element => {
+            (element.messaging).forEach(el=>{
+                response.send(el.message);
+            });
         });
-
-        response.send('finish');
     }
     else {
         // Responds with '403 Forbidden' if verify tokens do not match
