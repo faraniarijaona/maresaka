@@ -26,7 +26,7 @@ exports.webhookPost = function(request, response){
 
     if(params.object && params.entry){
         console.log("EVENT RECEIVED");
-        console.log(params.stringify());
+        console.log(JSON.stringify(params));
         (params.entry).forEach(element => {
             (element.messaging).forEach(el=>{
                 response.send(el.message);
