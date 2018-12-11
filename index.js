@@ -11,5 +11,4 @@ app.post('/webhook', webhook_controller.webhookPost);
 //app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.listen(process.env.PORT || 443, () => {
     console.log('webhook is listening');
-    console.log(PAGE_ACCESS_TOKEN);
 });
