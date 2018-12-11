@@ -1,3 +1,6 @@
+'use strict';
+var eventController = require('./eventController');
+
 exports.webhook = function(request, response){
     let VERIFY_TOKEN = "2081c182-fc9c-11e8-8eb2-f2801f1b9fd1";
     let mode = request.query['hub.mode'];
@@ -29,11 +32,22 @@ exports.webhookPost = function(request, response){
         console.log(JSON.stringify(params));
         (params.entry).forEach(element => {
             let webhook_event = element.messaging[0];
-            console.log(webhook_event);
+            console.log(JSON.stringify(webhook_event));
 
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);
+
+            if(webhook_event.message){
+                eventController.message(sender_psid, webhook_event.message);
+            }
+
+            if(webhook_event.postback){
+                eventController.postback(sender_psid, webhook_event.postback);
+            }
+
+
+
         });
     }
     else {
