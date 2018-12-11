@@ -27,7 +27,7 @@ exports.webhookPost = function(request, response){
     if(params.object == 'page'){
         console.log("EVENT RECEIVED");
        (params.entry).forEach(element => {
-            let webhook_event = entry.messaging[0];
+            let webhook_event = params.entry.messaging[0];
             console.log(webhook_event);
 
             let sender_psid = webhook_event.sender.id;
