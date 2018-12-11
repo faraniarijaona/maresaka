@@ -1,5 +1,6 @@
 'use strict';
 var webhook_controller = require('./controllers/webhookController');
+require('dotenv').config();
 
 const 
     express = require('express'),
