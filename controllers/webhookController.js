@@ -23,22 +23,9 @@ exports.webhook = function(request, response){
 
 exports.webhookPost = function(request, response){
     let params = request.body;
-
+    console.log(params);
     if(params.object == 'page'){
         console.log("EVENT RECEIVED");
-
-        params.entry.forEach(function(entry) {
-
-            // Gets the body of the webhook event
-            let webhook_event = entry.messaging[0];
-            console.log(webhook_event);
-          
-            // Get the sender PSID
-            let sender_psid = webhook_event.sender.id;
-            console.log('Sender PSID: ' + sender_psid);
-          
-          });
-        
        (params.entry).forEach(element => {
             let webhook_event = entry.messaging[0];
             console.log(webhook_event);
@@ -46,6 +33,8 @@ exports.webhookPost = function(request, response){
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);
         });
+
+        response.send('finish');
     }
     else {
         // Responds with '403 Forbidden' if verify tokens do not match
