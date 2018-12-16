@@ -57,6 +57,8 @@ exports.sendMessage = function(sender_psid, response){
         },
         "message": response
       }
+
+      Console.log(response);
     
       // Send the HTTP request to the Messenger Platform
       request({
