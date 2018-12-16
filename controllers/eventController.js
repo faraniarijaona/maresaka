@@ -4,6 +4,8 @@ const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiEr
 exports.message = function(sender_psid, received_message){
     let response;
 
+    console.log(received_message);
+
     // Check if the message contains text
     if (received_message.text) {    
   
