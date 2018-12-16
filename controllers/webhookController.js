@@ -29,15 +29,11 @@ exports.webhookPost = function(request, response){
     response.send('');
 
     if(params.object && params.entry){
-        console.log("EVENT RECEIVED");
-        console.log(JSON.stringify(params));
         (params.entry).forEach(element => {
             let webhook_event = element.messaging[0];
-            console.log(JSON.stringify(webhook_event));
 
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
-            console.log('Sender PSID: ' + sender_psid);
 
             if(webhook_event.message){
                 eventController.message(sender_psid, webhook_event.message);
