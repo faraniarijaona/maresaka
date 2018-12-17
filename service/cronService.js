@@ -4,7 +4,10 @@ const helper = require('../helper/Helper'),
     feedSource = require("../feedsource/feedsource"),
     writeFile = require('write-file'),
     jsdom = require("jsdom"),
-    request = require('request');;
+    request = require('request');
+
+const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD";
+
 
 
 const { JSDOM } = jsdom;
