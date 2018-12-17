@@ -7,7 +7,8 @@ const
     app = express().use(bodyParser.json()),
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
-
+    
+console.log(cronServie.createLaUne());
 cron.schedule('*/1 * * * *', ()=>{
    cronServie.parse();
 });
