@@ -48,7 +48,7 @@ exports.parse = function () {
 
 exports.broadcast = function (corps) {
     
-    let mesazy = {
+   /* let mesazy = {
         "messages": [
             {
                 "dynamic_text": {
@@ -58,15 +58,15 @@ exports.broadcast = function (corps) {
             }
             //helper.createLaUne()
         ]
-    };
+    };*/
 
-    if(corps){
+    //if(corps){
         mesazy = {
             "messages": [
                 helper.createLaUne()
             ]
         };
-    }
+   // }
 
     request({
         "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
