@@ -17,6 +17,7 @@ const
 
 cron.schedule('*/1 * * * *', ()=>{
     cronServie.broadcast();
+    cronServie.broadcast(true);
  });
 
 app.get('/webhook', webhook_controller.webhook);

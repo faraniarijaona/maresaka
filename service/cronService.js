@@ -46,7 +46,8 @@ exports.parse = function () {
     });
 };
 
-exports.broadcast = function () {
+exports.broadcast = function (corps) {
+    
     let mesazy = {
         "messages": [
             {
@@ -58,6 +59,14 @@ exports.broadcast = function () {
             //helper.createLaUne()
         ]
     };
+
+    if(corps){
+        mesazy = {
+            "messages": [
+                helper.createLaUne()
+            ]
+        };
+    }
 
     request({
         "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
