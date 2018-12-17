@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dom-parser": "^0.1.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "feed-read": "0.0.1",
+    "jsdom": "^13.1.0",
     "node-cron": "^2.0.3",
     "recursive-readdir-synchronous": "0.0.4",
     "request": "^2.88.0",

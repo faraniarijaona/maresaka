@@ -7,11 +7,17 @@ const
     app = express().use(bodyParser.json()),
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
-    
-console.log(cronServie.createLaUne());
+
+/**
+ * schedule task for parsing content of feed, scaled each 1 minute
+ */
+//cron.schedule('*/1 * * * *', ()=>{
+//   cronServie.parse();
+//});
+
 cron.schedule('*/1 * * * *', ()=>{
-   cronServie.parse();
-});
+    cronServie.broadcast();
+ });
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
