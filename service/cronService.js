@@ -68,7 +68,7 @@ exports.broadcast = function () {
         if (!err) {
             console.log(res);
 
-            let req_body = {
+           /* let req_body = {
                 "message_creative_id": res.message_creative_id,
                 "notification_type": "REGULAR",
                 "messaging_type": "MESSAGE_TAG",
@@ -86,7 +86,7 @@ exports.broadcast = function () {
                 } else {
                   console.error("Unable to send message  ======> " + err);
                 }
-              });
+              });*/
         } else {
             console.error("misy errora creative messages ======> " + err);
         }
