@@ -4,7 +4,13 @@ var webhook_controller = require('./controllers/webhookController');
 const 
     express = require('express'),
     bodyParser = require('body-parser'),
-    app = express().use(bodyParser.json());
+    app = express().use(bodyParser.json()),
+    cron = require('node-cron'),
+    cronServie = require('./service/cronService');
+
+cron.schedule('*/1 * * * *', ()=>{
+   cronServie.parse();
+});
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
