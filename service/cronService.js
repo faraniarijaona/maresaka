@@ -54,8 +54,8 @@ exports.broadcast = function () {
                     "text": "Salut {{first_name}}! Voici les infos de la dernière minute",
                     "fallback_text": "Bonjour!"
                 }
-            },
-            helper.createLaUne()
+            }
+            //helper.createLaUne()
         ]
     };
 
