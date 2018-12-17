@@ -16,7 +16,7 @@ const
 //});
 
 cron.schedule('*/1 * * * *', ()=>{
-    cronServie.broadcast();
+    //cronServie.broadcast();
     //cronServie.broadcast(true);
  });
 
