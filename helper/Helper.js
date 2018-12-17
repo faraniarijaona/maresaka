@@ -68,6 +68,7 @@ exports.renderTemplate = function (data) {
 
     return {
         "attachment": {
+            "type":"template",
             "payload": {
                 "template_type": "generic",
                 "elements": elements
