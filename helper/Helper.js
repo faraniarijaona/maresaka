@@ -1,6 +1,7 @@
 'use strict';
 const recursive = require('recursive-readdir-synchronous'),
-        fs = require('fs');
+        fs = require('fs'),
+        arrayChunk = require('array-chunk');;
 
 exports.extractHostname = function (url) {
     var hostname;
@@ -21,10 +22,12 @@ exports.extractHostname = function (url) {
     return hostname;
 };
 
+
+
 /**
  * read data stored
  */
-exports.createLaUne = function () {
+exports.getAllActus = function () {
     let LaUne = [];
     let files = recursive('cache/');
 
@@ -34,8 +37,7 @@ exports.createLaUne = function () {
             LaUne.push(d);
         });
     });
-
-    return this.renderTemplate(LaUne);
+    return arrayChunk(LaUne, 10);
 };
 
 /**

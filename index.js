@@ -16,8 +16,8 @@ const
 //});
 
 cron.schedule('*/1 * * * *', ()=>{
-    //cronServie.broadcast();
-    //cronServie.broadcast(true);
+    cronServie.broadcastDerniereMinuteHeader();
+    cronServie.broadcastDerniereMinute();
  });
 
 app.get('/webhook', webhook_controller.webhook);
