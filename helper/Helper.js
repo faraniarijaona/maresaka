@@ -61,7 +61,7 @@ exports.renderTemplate = function(data) {
             "subtitle": el.source,
             "buttons": [{
                 "type": "web_url",
-                "url": el.link +" - "+formatTime(new Date(el.date)),
+                "url": el.link,
                 "title": "VOIR L'ARTICLE"
             }]
         };
