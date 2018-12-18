@@ -18,7 +18,7 @@ exports.parse = function () {
         feed(fe, (err, articles) => {
             let resp_to_write = [];
             articles.forEach(article => {
-                let t = { title: article.title, link: article.link, content: article.content, date: article.published, source: helper.extractHostname(article.feed.link) };
+                let t = {caption:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJcY82QUn8QF_OtoaOxokyR1YpM38kvSsoFDxZM8ps_GaBlBe", title: article.title, link: article.link, content: article.content, date: article.published, source: helper.extractHostname(article.feed.link) };
 
                 const dom = new JSDOM(article.content);
                 let images = dom.window.document.getElementsByTagName("img");
