@@ -11,14 +11,14 @@ const
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-//cron.schedule('*/1 * * * *', ()=>{
-//   cronServie.parse();
-//});
+cron.schedule('15 7,12 * * *', ()=>{
+   cronServie.parse();
+});
 
-cron.schedule('*/1 * * * *', ()=>{
+cron.schedule('30 7,12 * * *', ()=>{
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
- });
+});
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
