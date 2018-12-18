@@ -3,14 +3,13 @@ const recursive = require('recursive-readdir-synchronous'),
     fs = require('fs'),
     arrayChunk = require('array-chunk');;
 
-exports.extractHostname = function (url) {
+exports.extractHostname = function(url) {
     var hostname;
     //find & remove protocol (http, ftp, etc.) and get hostname
 
     if (url.indexOf("//") > -1) {
         hostname = url.split('/')[2];
-    }
-    else {
+    } else {
         hostname = url.split('/')[0];
     }
 
@@ -22,7 +21,7 @@ exports.extractHostname = function (url) {
     return hostname;
 };
 
-exports.diff_hours = function (dt2, dt1) {
+exports.diff_hours = function(dt2, dt1) {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= (60 * 60);
     return Math.abs(Math.round(diff));
@@ -31,7 +30,7 @@ exports.diff_hours = function (dt2, dt1) {
 /**
  * read data stored
  */
-exports.getAllActus = function () {
+exports.getAllActus = function() {
     let LaUne = [];
     let files = recursive('cache/');
 
@@ -48,20 +47,18 @@ exports.getAllActus = function () {
  * creer tepmlate for facebook message_crea tive
  * @param {array} data 
  */
-exports.renderTemplate = function (data) {
+exports.renderTemplate = function(data) {
     let elements = [];
 
     data.forEach(el => {
         let currObject = {
             "title": el.title,
             "subtitle": el.source,
-            "buttons": [
-                {
-                    "type": "web_url",
-                    "url": el.link,
-                    "title": "Lire"
-                }
-            ]
+            "buttons": [{
+                "type": "web_url",
+                "url": el.link,
+                "title": "VOIR L'ARTICLE"
+            }]
         };
 
         if (el.caption) {

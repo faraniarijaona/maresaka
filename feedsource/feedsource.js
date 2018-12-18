@@ -1,11 +1,9 @@
 'use strict';
 
-exports.getSource = function(topic){
-    if(topic){
+exports.getSource = function(topic) {
+    if (topic) {
 
-    }
-    else{
-        return ['http://matv.mg/feed/'];
+    } else {
+        return ['http://matv.mg/feed/', 'http://www.rfi.fr/general/rss'];
     }
 }
-
