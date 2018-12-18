@@ -30,9 +30,6 @@ exports.parse = function(offset) {
                      }
                      t.caption = imageUrl;
                  }*/
-
-                console.log(t);
-
                 if (offset) {
                     if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
                         resp_to_write.push(t);

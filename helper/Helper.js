@@ -51,6 +51,8 @@ exports.getAllActus = function() {
  * @param {array} data 
  */
 exports.renderTemplate = function(data) {
+    var formatTime = require('d3-time-format').timeFormat("%d %b %Y %H:%M");
+    
     let elements = [];
 
     data.forEach(el => {
@@ -59,7 +61,7 @@ exports.renderTemplate = function(data) {
             "subtitle": el.source,
             "buttons": [{
                 "type": "web_url",
-                "url": el.link +" - "+new Date(el.date).toDateString(),
+                "url": el.link +" - "+formatTime(new Date(el.date)),
                 "title": "VOIR L'ARTICLE"
             }]
         };
