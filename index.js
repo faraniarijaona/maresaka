@@ -16,7 +16,7 @@ const
 //});
 
 cron.schedule('*/1 * * * *', ()=>{
-  //  cronServie.broadcastDerniereMinuteHeader();
+    cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
  });
 
