@@ -10,7 +10,7 @@ const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiEr
 
 const { JSDOM } = jsdom;
 
-exports.parse = function () {
+exports.parse = function (offset) {
     let list_feed = feedSource.getSource();
 
     list_feed.forEach(fe => {
@@ -18,7 +18,7 @@ exports.parse = function () {
         feed(fe, (err, articles) => {
             let resp_to_write = [];
             articles.forEach(article => {
-                let t = {caption:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJcY82QUn8QF_OtoaOxokyR1YpM38kvSsoFDxZM8ps_GaBlBe", title: article.title, link: article.link, content: article.content, date: article.published, source: helper.extractHostname(article.feed.link) };
+                let t = { caption: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJcY82QUn8QF_OtoaOxokyR1YpM38kvSsoFDxZM8ps_GaBlBe", title: article.title, link: article.link, content: article.content, date: article.published, source: helper.extractHostname(article.feed.link) };
 
                 const dom = new JSDOM(article.content);
                 let images = dom.window.document.getElementsByTagName("img");
@@ -30,7 +30,15 @@ exports.parse = function () {
                     }
                     t.caption = imageUrl;
                 }
-                resp_to_write.push(t);
+
+                if(offset){
+                    if(helper.diff_hours(new Date(), new Date(t.date)) <= 6){
+                        resp_to_write.push(t);
+                    }
+                }
+                else{
+                    resp_to_write.push(t);
+                }
             });
 
             if (articles.length > 0) {
