@@ -40,6 +40,9 @@ exports.getAllActus = function() {
             LaUne.push(d);
         });
     });
+
+    files.sort((a, b)=> this.diff_hours(new Date(a.date), new Date(b.date)));
+
     return arrayChunk(LaUne, 10);
 };
 
@@ -56,7 +59,7 @@ exports.renderTemplate = function(data) {
             "subtitle": el.source,
             "buttons": [{
                 "type": "web_url",
-                "url": el.link,
+                "url": el.link +" - "+new Date(el.date).toDateString(),
                 "title": "VOIR L'ARTICLE"
             }]
         };
