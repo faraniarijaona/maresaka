@@ -1,7 +1,7 @@
 'use strict';
 var webhook_controller = require('./controllers/webhookController');
 
-const 
+const
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()),
@@ -11,11 +11,11 @@ const
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-cron.schedule('15 7,12,18 * * *', ()=>{
-   cronServie.parse();
+cron.schedule('0 */1 * * *', () => {
+    cronServie.parse(6);
 });
 
-cron.schedule('30 7,12,18 * * *', ()=>{
+cron.schedule('15 */1 * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
 });
