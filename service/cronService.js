@@ -61,7 +61,7 @@ exports.broadcastDerniereMinuteHeader = function () {
 
 exports.broadcastDerniereMinute = function () {
     helper.getAllActus().forEach(chunk => {
-        mesazy = {
+        let mesazy = {
             "messages": [
                 helper.renderTemplate(chunk)
             ]
