@@ -1,7 +1,7 @@
 'use strict';
 const recursive = require('recursive-readdir-synchronous'),
-        fs = require('fs'),
-        arrayChunk = require('array-chunk');;
+    fs = require('fs'),
+    arrayChunk = require('array-chunk');;
 
 exports.extractHostname = function (url) {
     var hostname;
@@ -22,7 +22,11 @@ exports.extractHostname = function (url) {
     return hostname;
 };
 
-
+exports.diff_hours = function (dt2, dt1) {
+    var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= (60 * 60);
+    return Math.abs(Math.round(diff));
+}
 
 /**
  * read data stored
@@ -70,7 +74,7 @@ exports.renderTemplate = function (data) {
 
     return {
         "attachment": {
-            "type":"template",
+            "type": "template",
             "payload": {
                 "template_type": "generic",
                 "elements": elements
