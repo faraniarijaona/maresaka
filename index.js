@@ -16,13 +16,13 @@ const
 //});
 
 cron.schedule('*/1 * * * *', ()=>{
-    cronServie.broadcastDerniereMinuteHeader();
+  //  cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
  });
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
-//app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
+
 app.listen(process.env.PORT || 443, () => {
     console.log('webhook is listening');
 });
