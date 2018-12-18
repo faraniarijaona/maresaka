@@ -11,11 +11,11 @@ const
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-cron.schedule('0 */1 * * *', () => {
+cron.schedule('*/1 * * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('15 */1 * * *', () => {
+cron.schedule('*/2 * * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
 });
