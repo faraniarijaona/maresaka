@@ -7,7 +7,6 @@ const
     app = express().use(bodyParser.json()),
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
-
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */

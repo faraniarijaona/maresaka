@@ -53,6 +53,7 @@ exports.postback = function (sender_psid, received_message) {
   switch (received_message.payload) {
     case "BEGIN":
       this.sendMessage(sender_psid, messageTemplate.greeting());
+      this.sendMessage(sender_psid, messageTemplate.whoisme());
 
   }
 };

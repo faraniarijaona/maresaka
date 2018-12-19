@@ -51,24 +51,20 @@ exports.getAllActus = function() {
  * @param {array} data 
  */
 exports.renderTemplate = function(data) {
-    var formatTime = require('d3-time-format').timeFormat("%d %b %Y %H:%M");
-    
+ 
     let elements = [];
 
     data.forEach(el => {
         let currObject = {
+            "image_url":el.image,
             "title": el.title,
-            "subtitle": el.source,
+            "subtitle": el.source+" - "+el.date,
             "buttons": [{
                 "type": "web_url",
                 "url": el.link,
                 "title": "VOIR L'ARTICLE"
             }]
         };
-
-        if (el.caption) {
-            currObject.image_url = el.caption;
-        }
 
         elements.push(currObject);
     });
