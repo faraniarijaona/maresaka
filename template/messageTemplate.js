@@ -39,7 +39,7 @@ exports.whoisme = function () {
 
     if (lang.includes('mg')) {
         content = {
-            "text": "Rémi no anarako, ny andraikitro dia mampahafantatra anao ireo vaovao farany "
+            "text": "Rémi no anarako, ny asako dia mampahafantatra anao ireo vaovao farany mitranga"
         };
     }
     else if (lang.includes('fr')) {
