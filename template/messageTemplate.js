@@ -34,12 +34,12 @@ exports.whoisme = function () {
     let lang = '{{locale}}';
 
     let content = {
-        "text": "I am Rémi, my mission is to inform you the last minutes of the news"
+        "text": "I am Rémi, my mission is to inform you the last breaking news"
     };
 
     if (lang.includes('mg')) {
         content = {
-            "text": "Rémi no anarako, ny "
+            "text": "Rémi no anarako, ny andraikitro dia mampahafantatra anao ireo vaovao farany "
         };
     }
     else if (lang.includes('fr')) {
