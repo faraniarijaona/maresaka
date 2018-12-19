@@ -7,6 +7,7 @@ const
     app = express().use(bodyParser.json()),
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
+
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
@@ -17,6 +18,10 @@ cron.schedule('0 */6 * * *', () => {
 cron.schedule('1 */6 * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
+});
+
+cron.schedule('*/20 * * * *', () => {
+   console.log("prevent idling");
 });
 
 /*cron.schedule('10 * * * *', () => {
