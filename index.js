@@ -12,6 +12,9 @@ const
  */
 cron.schedule('0 */6 * * *', () => {
     cronServie.parse(6);
+});
+
+cron.schedule('1 */6 * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
 });
