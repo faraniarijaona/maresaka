@@ -1,7 +1,7 @@
 const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
 const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD",
-  cronServie = require('../service/cronService');
+  helper = require('../helper/Helper');
 exports.message = function (sender_psid, received_message) {
   let response;
 
