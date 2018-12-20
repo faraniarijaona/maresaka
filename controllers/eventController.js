@@ -85,14 +85,15 @@ exports.postback = function (sender_psid, received_message) {
 
         this.sendMessage(sender_psid, mesazy);
 
-      /*  data.forEach(chunk => {
+        data.forEach(chunk => {
+          console.log(chunk);
           let mesazy = {
             "messages": [
               helper.renderTemplate(chunk)
             ]
           };
           this.sendMessage(sender_psid, mesazy);
-        });*/
+        });
 
       }
       else {
