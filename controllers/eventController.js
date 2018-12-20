@@ -53,6 +53,7 @@ exports.postback = function (sender_psid, received_message) {
   switch (received_message.payload) {
     case "BEGIN":
       this.sendMessage(sender_psid, messageTemplate.greeting());
+      break;
     case "LATEST_NEWS":
       let data = helper.getAllActus();
 
@@ -111,6 +112,7 @@ exports.postback = function (sender_psid, received_message) {
 
         this.sendMessage(sender_psid, mesazy);
       }
+      break;
 
   }
 };
