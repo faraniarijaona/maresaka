@@ -15,13 +15,16 @@ cron.schedule('*/5 * * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('5 */6 * * *', () => {
-    cronServie.broadcastDerniereMinuteHeader();
-    cronServie.broadcastDerniereMinute();
+cron.schedule('10 */6 * * *', () => {
+    let data = helper.getAllActus();
+    if (data.length > 0) {
+        cronServie.broadcastDerniereMinuteHeader();
+        cronServie.broadcastDerniereMinute();
+    }
 });
 
 cron.schedule('*/5 * * * *', () => {
-  
+
 });
 
 app.get('/webhook', webhook_controller.webhook);
