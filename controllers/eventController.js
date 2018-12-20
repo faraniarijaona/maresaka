@@ -100,7 +100,29 @@ exports.postback = function (sender_psid, received_message) {
 
       }
       else {
+        let lang = '{{locale}}';
 
+        let mesazy = {
+          "messages": [{
+              "text": "Nothing special to say"
+          }]
+        };
+
+        if (lang.includes('fr')) {
+          mesazy = {
+            "messages": [{
+                "text": "Rien de spécial!"
+            }]
+          };
+        } else if (lang.includes('mg')) {
+          mesazy = {
+            "messages": [{
+                "text": "Tsisy vaovao, tsisy maresaka"
+            }]
+          };
+        }
+
+        this.sendMessage(sender_psid, mesazy);
       }
 
   }
