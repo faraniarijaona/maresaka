@@ -15,10 +15,10 @@ cron.schedule('*/1 * * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('*/2 * * * *', () => {
+/*cron.schedule('* * * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
-});
+});*/
 
 cron.schedule('*/20 * * * *', () => {
    console.log("prevent idling");

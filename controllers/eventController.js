@@ -1,7 +1,7 @@
 const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
-const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD";
-
+const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD",
+  cronServie = require('../service/cronService');
 exports.message = function (sender_psid, received_message) {
   let response;
 
@@ -53,7 +53,9 @@ exports.postback = function (sender_psid, received_message) {
   switch (received_message.payload) {
     case "BEGIN":
       this.sendMessage(sender_psid, messageTemplate.greeting());
-      this.sendMessage(sender_psid, messageTemplate.whoisme());
+    case "LATEST_NEWS":
+      cronServie.broadcastDerniereMinuteHeader();
+      cronServie.broadcastDerniereMinute();
 
   }
 };

@@ -28,18 +28,19 @@ exports.parse = function (offset) {
             let res = await parser.parseURL(feed);
             let resp_to_write = [];
             res.items.forEach(item => {
-                let t = { title: item.title, link: item.link, content: item.content, category: item.categories, date: item.pubDate, image: item.image.$.url, source:helper.extractHostname(item.link)};
-                /* writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function (err) {
-                     if (err) {
-                         console.log(err);
-                     }
-                 });*/
+                let t = { title: item.title, link: item.link, content: item.content, category: item.categories, date: item.pubDate, source: helper.extractHostname(item.link) };
 
-                 console.log(JSON.stringify(t));
-                 console.log('*****************')
+                if (item.image) {
+                    if (item.image.$.url) {
+                        t.image = item.image.$.url;
+                    }
+                    else if (item.image.$.src) {
+                        t.image = item.image.$.src;
+                    }
+                }
 
                 if (offset) {
-                    if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
+                    if (helper.diff_hours(new Date(Date.UTC()), new Date(t.date)) <= 6) {
                         resp_to_write.push(t);
                     }
                 } else {
@@ -57,14 +58,36 @@ exports.parse = function (offset) {
 };
 
 exports.broadcastDerniereMinuteHeader = function () {
+    let lang = '{{locale}}';
+
     let mesazy = {
         "messages": [{
             "dynamic_text": {
-                "text": "Salut {{first_name}}! Voici les infos de la dernière minute",
-                "fallback_text": "Bonjour!"
+                "text": "Hi {{first_name}}! There are the latest news",
+                "fallback_text": "Hi! There are the latest news"
             }
         }]
     };
+
+    if (lang.includes('fr')) {
+        mesazy = {
+            "messages": [{
+                "dynamic_text": {
+                    "text": "Salut {{first_name}}! Voici les infos de la dernière minute",
+                    "fallback_text": "Salut! Voici les infos de la dernière minute"
+                }
+            }]
+        };
+    } else if (lang.includes('mg')) {
+        mesazy = {
+            "messages": [{
+                "dynamic_text": {
+                    "text": "Salama {{first_name}}! Ireto ny vaovao farany",
+                    "fallback_text": "Salama! Ireto ny vaovao farany"
+                }
+            }]
+        };
+    }
 
     this.doCreateMessage(mesazy);
 }
