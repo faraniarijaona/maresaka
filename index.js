@@ -11,7 +11,7 @@ const
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-cron.schedule('*/1 */6 * * *', () => {
+cron.schedule('*/1 * * * *', () => {
     cronServie.parse(6);
 });
 
