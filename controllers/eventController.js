@@ -87,11 +87,7 @@ exports.postback = function (sender_psid, received_message) {
 
         data.forEach(chunk => {
           console.log(chunk);
-          let mesazy = {
-            "messages": [
-              helper.renderTemplate(chunk)
-            ]
-          };
+          let mesazy = helper.renderTemplate(chunk);
           this.sendMessage(sender_psid, mesazy);
         });
 
