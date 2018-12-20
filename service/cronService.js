@@ -10,7 +10,8 @@ const helper = require('../helper/Helper'),
         customFields: {
             item: [
                 ['enclosure', 'image'],
-                ['media:thumbnail', 'image']
+                ['media:thumbnail', 'image'],
+                ['img', 'image']
             ],
         }
     });
