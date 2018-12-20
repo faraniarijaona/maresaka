@@ -11,11 +11,11 @@ const
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-cron.schedule('0 */6 * * *', () => {
+cron.schedule('*/1 */6 * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('1 */6 * * *', () => {
+cron.schedule('*/2 * * * *', () => {
     cronServie.broadcastDerniereMinuteHeader();
     cronServie.broadcastDerniereMinute();
 });
@@ -23,11 +23,6 @@ cron.schedule('1 */6 * * *', () => {
 cron.schedule('*/20 * * * *', () => {
    console.log("prevent idling");
 });
-
-/*cron.schedule('10 * * * *', () => {
-    cronServie.broadcastDerniereMinuteHeader();
-    cronServie.broadcastDerniereMinute();
-});*/
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
