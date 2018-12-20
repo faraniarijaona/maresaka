@@ -92,15 +92,27 @@ exports.broadcastDerniereMinuteHeader = function () {
     this.doCreateMessage(mesazy);
 }
 
-exports.broadcastDerniereMinute = function () {
-    helper.getAllActus().forEach(chunk => {
-        let mesazy = {
-            "messages": [
-                helper.renderTemplate(chunk)
-            ]
-        };
-        this.doCreateMessage(mesazy, true);
-    });
+exports.broadcastDerniereMinute = function (data) {
+    if (data) {
+        data.forEach(chunk => {
+            let mesazy = {
+                "messages": [
+                    helper.renderTemplate(chunk)
+                ]
+            };
+            this.doCreateMessage(mesazy, true);
+        });
+    }
+    else {
+        helper.getAllActus().forEach(chunk => {
+            let mesazy = {
+                "messages": [
+                    helper.renderTemplate(chunk)
+                ]
+            };
+            this.doCreateMessage(mesazy, true);
+        });
+    }
 };
 
 exports.doCreateMessage = function (mesazy, withNotification) {
