@@ -40,7 +40,7 @@ exports.parse = function (offset) {
                 }
 
                 if (offset) {
-                    if (helper.diff_hours(new Date(Date.UTC()), new Date(t.date)) <= 6) {
+                    if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
                         resp_to_write.push(t);
                     }
                 } else {
