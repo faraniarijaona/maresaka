@@ -55,6 +55,8 @@ exports.postback = function (sender_psid, received_message) {
       this.sendMessage(sender_psid, messageTemplate.greeting());
     case "LATEST_NEWS":
       let data = helper.getAllActus();
+
+      console.log("data.length"+data.length);
       if (data.length > 0) {
         let lang = '{{locale}}';
 
