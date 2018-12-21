@@ -52,5 +52,7 @@ exports.quickmenu = function (datas, message) {
     if (message) {
         content.text = message;
     }
+
+    return content;
 }
 
