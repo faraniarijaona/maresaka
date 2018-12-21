@@ -50,13 +50,13 @@ exports.message = function (sender_psid, received_message) {
 };
 
 exports.postback = function (sender_psid, received_message) {
+  console.log(received_message);
   switch (received_message.payload) {
     case "BEGIN":
       this.sendMessage(sender_psid, messageTemplate.greeting());
       break;
     case "LATEST_NEWS":
       let data = helper.getAllActus();
-      console.log("data.length" + data.length);
       if (data.length > 0) {
         let lang = '{{locale}}';
 
