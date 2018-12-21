@@ -32,6 +32,7 @@ exports.greeting = function () {
 
 exports.quickmenu = function (datas, message) {
     let content = {
+        "text": message,
         "quick_replies": []
     };
     datas.forEach(element => {
@@ -41,17 +42,13 @@ exports.quickmenu = function (datas, message) {
             "payload": element.payload
         };
 
-        if(element.image){
-            t.image_url =  element.image;
+        if (element.image) {
+            t.image_url = element.image;
         }
 
         content.quick_replies.push(t);
 
     });
-
-    if (message) {
-        content.text = message;
-    }
 
     console.log(JSON.stringify(content));
 
