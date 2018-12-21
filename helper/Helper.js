@@ -79,7 +79,7 @@ exports.renderTemplate = function(data) {
         if (element.image) {
             t.image_url = element.image;
         }
-        mesazy.quick_replies.push(t);
+        quickreplies.push(t);
     });
 
     return {
