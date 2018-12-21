@@ -17,7 +17,35 @@ cron.schedule('*/5 * * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('2 */6 * * *', () => {
+cron.schedule('28 7 * * *', () => {
+    let data = helper.getAllActus();
+    if (data.length > 0) {
+        cronServie.broadcastDerniereMinuteHeader().then(
+            success => {
+                cronServie.broadcastDerniereMinute();
+            },
+            error => {
+
+            }
+        );
+    }
+});
+
+cron.schedule('28 12 * * *', () => {
+    let data = helper.getAllActus();
+    if (data.length > 0) {
+        cronServie.broadcastDerniereMinuteHeader().then(
+            success => {
+                cronServie.broadcastDerniereMinute();
+            },
+            error => {
+
+            }
+        );
+    }
+});
+
+cron.schedule('28 17 * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
         cronServie.broadcastDerniereMinuteHeader().then(
