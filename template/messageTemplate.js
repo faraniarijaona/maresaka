@@ -53,6 +53,8 @@ exports.quickmenu = function (datas, message) {
         content.text = message;
     }
 
+    console.log(JSON.stringify(content));
+
     return content;
 }
 
