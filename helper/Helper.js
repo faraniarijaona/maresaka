@@ -81,7 +81,6 @@ exports.renderTemplate = function(data) {
     };
 }
 
-
 exports.retrieveQuickmenus = function(){
     return [
         { "title": "Latest News", "payload": "LATEST_NEWS" },

@@ -6,7 +6,8 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()),
     cron = require('node-cron'),
-    cronServie = require('./service/cronService');
+    cronServie = require('./service/cronService'),
+    helper = require('./helper/Helper');
 
 cronServie.parse(6);
 /**
