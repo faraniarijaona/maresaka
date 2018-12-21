@@ -8,7 +8,7 @@ const
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
 
-    cronServie.parse(6);
+cronServie.parse(6);
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
@@ -19,8 +19,14 @@ cron.schedule('*/5 * * * *', () => {
 cron.schedule('10 */6 * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
-        cronServie.broadcastDerniereMinuteHeader();
-        cronServie.broadcastDerniereMinute();
+        cronServie.broadcastDerniereMinuteHeader().then(
+            success => {
+                cronServie.broadcastDerniereMinute();
+            },
+            error => {
+
+            }
+        );
     }
 });
 

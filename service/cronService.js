@@ -20,12 +20,12 @@ const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiEr
 
 const { JSDOM } = jsdom;
 
-exports.parse = function (offset) {
+exports.parse = function(offset) {
     let list_feed = feedSource.getSource();
 
     list_feed.forEach(feed => {
 
-        (async () => {
+        (async() => {
             let res = await parser.parseURL(feed);
             let resp_to_write = [];
             res.items.forEach(item => {
@@ -34,8 +34,7 @@ exports.parse = function (offset) {
                 if (item.image) {
                     if (item.image.$.url) {
                         t.image = item.image.$.url;
-                    }
-                    else if (item.image.$.src) {
+                    } else if (item.image.$.src) {
                         t.image = item.image.$.src;
                     }
                 }
@@ -49,7 +48,7 @@ exports.parse = function (offset) {
                 }
             });
 
-            writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function (err) {
+            writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function(err) {
                 if (err) {
                     console.log(err);
                 }
@@ -58,7 +57,7 @@ exports.parse = function (offset) {
     });
 };
 
-exports.broadcastDerniereMinuteHeader = function () {
+exports.broadcastDerniereMinuteHeader = function() {
     let lang = '{{locale}}';
 
     let mesazy = {
@@ -90,10 +89,10 @@ exports.broadcastDerniereMinuteHeader = function () {
         };
     }
 
-    this.doCreateMessage(mesazy);
+    return this.doCreateMessage(mesazy);
 }
 
-exports.broadcastDerniereMinute = function (data) {
+exports.broadcastDerniereMinute = function(data) {
     if (data) {
         data.forEach(chunk => {
             let mesazy = {
@@ -101,39 +100,47 @@ exports.broadcastDerniereMinute = function (data) {
                     helper.renderTemplate(chunk)
                 ]
             };
-            this.doCreateMessage(mesazy, true);
+            return this.doCreateMessage(mesazy, true);
         });
-    }
-    else {
+    } else {
         helper.getAllActus().forEach(chunk => {
             let mesazy = {
                 "messages": [
                     helper.renderTemplate(chunk)
                 ]
             };
-            this.doCreateMessage(mesazy, true);
+            return this.doCreateMessage(mesazy, true);
         });
     }
 };
 
-exports.doCreateMessage = function (mesazy, withNotification) {
-    request({
-        "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": mesazy
-    }, (err, res, body) => {
-        if (!err) {
-            console.log(res);
-            this.doSend(body, withNotification);
+exports.doCreateMessage = function(mesazy, withNotification) {
+    return new Promise(function(resolve, reject) {
+        request({
+            "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "POST",
+            "json": mesazy
+        }, (err, res, body) => {
+            if (!err) {
+                console.log(res);
+                this.doSend(body, withNotification).then(
+                    sendBodyResponse => {
+                        resolve({ "sendMessage": sendBodyResponse, "createMessage": body });
+                    },
+                    sendError => {
+                        reject({ "sendError": sendError, "createMessage": body });
+                    }
+                );
 
-        } else {
-            console.error("misy errora creative messages ======> " + err);
-        }
-    });
+            } else {
+                reject(err);
+            }
+        });
+    })
 };
 
-exports.doSend = function (body_message_creative, withNotification) {
+exports.doSend = function(body_message_creative, withNotification) {
     let req_body = {
         "message_creative_id": body_message_creative.message_creative_id,
         "notification_type": "SILENT_PUSH",
@@ -150,16 +157,18 @@ exports.doSend = function (body_message_creative, withNotification) {
         };
     }
 
-    request({
-        "uri": "https://graph.facebook.com/v2.6/me/broadcast_messages",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": req_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log(res);
-        } else {
-            console.error("Unable to send message  ======> " + err);
-        }
+    return new Promise(function(resolve, reject) {
+        request({
+            "uri": "https://graph.facebook.com/v2.6/me/broadcast_messages",
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "POST",
+            "json": req_body
+        }, (err, res, body) => {
+            if (!err) {
+                resolve(body);
+            } else {
+                reject(err);
+            }
+        });
     });
 };
