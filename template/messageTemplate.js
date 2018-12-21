@@ -34,7 +34,7 @@ exports.quickmenu = function (datas, message) {
     let content = {
         "quick_replies": []
     };
-    datas.array.forEach(element => {
+    datas.forEach(element => {
         let t = {
             "content_type": "text",
             "title": element.title,
