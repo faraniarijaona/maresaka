@@ -88,7 +88,6 @@ exports.broadcastDerniereMinuteHeader = function() {
             }]
         };
     }
-
     return this.doCreateMessage(mesazy);
 }
 

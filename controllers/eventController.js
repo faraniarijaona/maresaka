@@ -2,7 +2,7 @@ const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
 const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD",
     helper = require('../helper/Helper');
-exports.message = function(sender_psid, received_message) {
+exports.message = function (sender_psid, received_message) {
     let response;
 
     console.log(JSON.stringify(received_message));
@@ -31,15 +31,15 @@ exports.message = function(sender_psid, received_message) {
                             "subtitle": "Tap a button to answer.",
                             "image_url": attachment_url,
                             "buttons": [{
-                                    "type": "postback",
-                                    "title": "Yes!",
-                                    "payload": "yes",
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "No!",
-                                    "payload": "no",
-                                }
+                                "type": "postback",
+                                "title": "Yes!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "No!",
+                                "payload": "no",
+                            }
                             ],
                         }]
                     }
@@ -51,8 +51,7 @@ exports.message = function(sender_psid, received_message) {
     }
 };
 
-exports.postback = function(sender_psid, received_message) {
-
+exports.postback = function (sender_psid, received_message) {
     switch (received_message.payload) {
         case "BEGIN":
             this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
@@ -86,12 +85,12 @@ exports.postback = function(sender_psid, received_message) {
                 }
 
                 this.sendMessage(sender_psid, mesazy).then(success => {
-                        data.forEach(chunk => {
-                            console.log(chunk);
-                            let mesazy = helper.renderTemplate(chunk);
-                            this.sendMessage(sender_psid, mesazy);
-                        });
-                    },
+                    data.forEach(chunk => {
+                        console.log(chunk);
+                        let mesazy = helper.renderTemplate(chunk);
+                        this.sendMessage(sender_psid, mesazy);
+                    });
+                },
                     error => {
 
                     }
@@ -126,15 +125,31 @@ exports.postback = function(sender_psid, received_message) {
     }
 };
 
-exports.sendMessage = function(sender_psid, response) {
+exports.sendMessage = function (sender_psid, response) {
+    response.quick_reply
+
+    response.quick_replies = [];
+    
+    helper.retrieveQuickmenus().forEach(element => {
+        let t = {
+            "content_type": "text",
+            "title": element.title,
+            "payload": element.payload
+        };
+        if (element.image) {
+            t.image_url = element.image;
+        }
+        content.quick_replies.push(t);
+    });
+
+
     let request_body = {
         "recipient": {
             "id": sender_psid
         },
         "message": response
     }
-    console.log(response);
-    return new Promise(function(success, error) {
+    return new Promise(function (success, error) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/messages",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },

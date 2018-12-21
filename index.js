@@ -31,10 +31,6 @@ cron.schedule('*/ * * * *', () => {
     }
 });
 
-cron.schedule('*/5 * * * *', () => {
-
-});
-
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
 
