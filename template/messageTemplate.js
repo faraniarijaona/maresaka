@@ -30,3 +30,27 @@ exports.greeting = function () {
     return content;
 };
 
+exports.quickmenu = function (datas, message) {
+    let content = {
+        "quick_replies": []
+    };
+    datas.array.forEach(element => {
+        let t = {
+            "content_type": "text",
+            "title": element.title,
+            "payload": element.payload
+        };
+
+        if(element.image){
+            t.image_url =  element.image;
+        }
+
+        content.quick_replies.push(t);
+
+    });
+
+    if (message) {
+        content.text = message;
+    }
+}
+
