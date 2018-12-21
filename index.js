@@ -8,6 +8,7 @@ const
     cron = require('node-cron'),
     cronServie = require('./service/cronService');
 
+    cronServie.parse(6);
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
