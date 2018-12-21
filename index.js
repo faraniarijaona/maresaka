@@ -16,7 +16,7 @@ cron.schedule('*/5 * * * *', () => {
     cronServie.parse(6);
 });
 
-cron.schedule('10 */6 * * *', () => {
+cron.schedule('*/ * * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
         cronServie.broadcastDerniereMinuteHeader().then(
