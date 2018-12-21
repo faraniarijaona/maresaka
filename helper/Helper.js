@@ -1,7 +1,7 @@
 'use strict';
 const recursive = require('recursive-readdir-synchronous'),
     fs = require('fs'),
-    arrayChunk = require('array-chunk');;
+    arrayChunk = require('array-chunk');
 
 exports.extractHostname = function(url) {
     var hostname;
@@ -69,6 +69,18 @@ exports.renderTemplate = function(data) {
         elements.push(currObject);
     });
 
+    let quickreplies = [];
+    this.retrieveQuickmenus().forEach(element => {
+        let t = {
+            "content_type": "text",
+            "title": element.title,
+            "payload": element.payload
+        };
+        if (element.image) {
+            t.image_url = element.image;
+        }
+        mesazy.quick_replies.push(t);
+    });
 
     return {
         "attachment": {
@@ -77,7 +89,8 @@ exports.renderTemplate = function(data) {
                 "template_type": "generic",
                 "elements": elements
             }
-        }
+        }, 
+        "quick_replies":quickreplies
     };
 }
 
