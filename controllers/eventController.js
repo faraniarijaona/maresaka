@@ -54,7 +54,11 @@ exports.postback = function (sender_psid, received_message) {
   switch (received_message.payload) {
     case "BEGIN":
       this.sendMessage(sender_psid, messageTemplate.greeting());
-      this.sendMessage(sender_psid, messageTemplate.quickmenu([{ "title": "Latest News", "payload": "LATEST_NEWS" }], "You can see"));
+      this.sendMessage(sender_psid, messageTemplate.quickmenu([
+        { "title": "Latest News", "payload": "LATEST_NEWS" },
+        { "title": "pharmacy", "payload": "PHARMACIE" },
+
+      ], "You can see"));
       break;
     case "LATEST_NEWS":
       let data = helper.getAllActus();
