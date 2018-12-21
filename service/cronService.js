@@ -115,6 +115,7 @@ exports.broadcastDerniereMinute = function(data) {
 };
 
 exports.doCreateMessage = function(mesazy, withNotification) {
+    let pp = this;
     return new Promise(function(resolve, reject) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
@@ -124,7 +125,7 @@ exports.doCreateMessage = function(mesazy, withNotification) {
         }, (err, res, body) => {
             if (!err) {
                 console.log(res);
-                this.doSend(body, withNotification).then(
+                pp.doSend(body, withNotification).then(
                     sendBodyResponse => {
                         resolve({ "sendMessage": sendBodyResponse, "createMessage": body });
                     },
