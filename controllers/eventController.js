@@ -126,10 +126,7 @@ exports.postback = function (sender_psid, received_message) {
 };
 
 exports.sendMessage = function (sender_psid, response) {
-    response.quick_reply
-
     response.quick_replies = [];
-    
     helper.retrieveQuickmenus().forEach(element => {
         let t = {
             "content_type": "text",
@@ -139,9 +136,8 @@ exports.sendMessage = function (sender_psid, response) {
         if (element.image) {
             t.image_url = element.image;
         }
-        content.quick_replies.push(t);
+        response.quick_replies.push(t);
     });
-
 
     let request_body = {
         "recipient": {
@@ -149,6 +145,7 @@ exports.sendMessage = function (sender_psid, response) {
         },
         "message": response
     }
+    
     return new Promise(function (success, error) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/messages",

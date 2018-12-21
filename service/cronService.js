@@ -115,6 +115,19 @@ exports.broadcastDerniereMinute = function(data) {
 
 exports.doCreateMessage = function(mesazy, withNotification) {
     let pp = this;
+    mesazy.quick_replies = [];
+    helper.retrieveQuickmenus().forEach(element => {
+        let t = {
+            "content_type": "text",
+            "title": element.title,
+            "payload": element.payload
+        };
+        if (element.image) {
+            t.image_url = element.image;
+        }
+        mesazy.quick_replies.push(t);
+    });
+
     return new Promise(function(resolve, reject) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
