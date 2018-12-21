@@ -51,34 +51,11 @@ exports.message = function(sender_psid, received_message) {
     }
 };
 
-exports.postback = function (sender_psid, received_message) {
-
-  switch (received_message.payload) {
-    case "BEGIN":
-      this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
-      break;
-    case "LATEST_NEWS":
-      let data = helper.getAllActus();
-      if (data.length > 0) {
-        let lang = '{{locale}}';
-
-        let mesazy = {
-          "dynamic_text": {
-            "text": "Hi {{first_name}}! There are the latest news",
-            "fallback_text": "Hi! There are the latest news"
-          }
-        };
+exports.postback = function(sender_psid, received_message) {
 
     switch (received_message.payload) {
         case "BEGIN":
-            this.sendMessage(sender_psid, messageTemplate.greeting([
-                { "title": "Latest News", "payload": "LATEST_NEWS" },
-                { "title": "Pharmacie", "payload": "PHARMACIE" }
-            ]));
-            /* this.sendMessage(sender_psid, messageTemplate.quickmenu([
-               { "title": "Latest News", "payload": "LATEST_NEWS" },
-               { "title": "Pharmacie", "payload": "PHARMACIE" }
-             ], "You can see"));*/
+            this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
             break;
         case "LATEST_NEWS":
             let data = helper.getAllActus();
@@ -165,9 +142,9 @@ exports.sendMessage = function(sender_psid, response) {
             "json": request_body
         }, (err, res, body) => {
             if (!err) {
-                console.log('message sent!')
+                success(body);
             } else {
-                console.error("Unable to send message:" + err);
+                error(err);
             }
         });
     });
