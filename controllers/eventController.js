@@ -56,7 +56,7 @@ exports.postback = function (sender_psid, received_message) {
       this.sendMessage(sender_psid, messageTemplate.greeting());
       this.sendMessage(sender_psid, messageTemplate.quickmenu([
         { "title": "Latest News", "payload": "LATEST_NEWS" },
-        { "title": "pharmacy", "payload": "PHARMACIE" },
+        { "title": "Pharmacie", "payload": "PHARMACIE" },
 
       ], "You can see"));
       break;

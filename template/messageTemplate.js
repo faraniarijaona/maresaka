@@ -37,7 +37,7 @@ exports.quickmenu = function (datas, message) {
     };
     datas.forEach(element => {
         let t = {
-            "content_type": "text",
+            "content_type": "postback",
             "title": element.title,
             "payload": element.payload
         };
