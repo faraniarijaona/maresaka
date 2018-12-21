@@ -15,7 +15,7 @@ exports.message = function (sender_psid, received_message) {
                 break;
         }
     } else {
-        if (received_message.text) {
+       /* if (received_message.text) {
             response = {
                 "text": `You sent the message: "${received_message.text}". Now send me an image!`
             }
@@ -48,7 +48,7 @@ exports.message = function (sender_psid, received_message) {
             }
         }
         this.sendMessage(sender_psid, response);
-
+*/
     }
 };
 
