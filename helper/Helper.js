@@ -72,7 +72,6 @@ exports.renderTemplate = function(data) {
     let quickreplies = [];
     this.retrieveQuickmenus().forEach(element => {
         let t = {
-            "type":"postback",
             "content_type": "text",
             "title": element.title,
             "payload": element.payload
