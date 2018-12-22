@@ -26,10 +26,9 @@ exports.webhook = function (request, response) {
 
 exports.webhookPost = function (request, response) {
     var params = request.body;
-
     console.log(JSON.stringify(params));
-
     if (params.object && params.entry) {
+        response.sendStatus(200);
         (params.entry).forEach(element => {
             let webhook_event = element.messaging[0];
 
@@ -37,11 +36,7 @@ exports.webhookPost = function (request, response) {
             let sender_psid = webhook_event.sender.id;
 
             if (webhook_event.message) {
-                if (!webhook_event.message.quick_reply) {
-                    response.send('ack');
-                }
-                else
-                    eventController.message(sender_psid, webhook_event.message);
+                eventController.message(sender_psid, webhook_event.message);
             }
 
             if (webhook_event.postback) {
