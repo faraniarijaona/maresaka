@@ -3,7 +3,9 @@ const recursive = require('recursive-readdir-synchronous'),
     fs = require('fs'),
     arrayChunk = require('array-chunk');
 
-exports.extractHostname = function(url) {
+const request = require('request');
+
+exports.extractHostname = function (url) {
     var hostname;
     //find & remove protocol (http, ftp, etc.) and get hostname
 
@@ -21,7 +23,7 @@ exports.extractHostname = function(url) {
     return hostname;
 };
 
-exports.diff_hours = function(dt2, dt1) {
+exports.diff_hours = function (dt2, dt1) {
     var diff = (dt2.getTime() - dt1.getTime()) / 1000;
     diff /= (60 * 60);
     return Math.abs(Math.round(diff));
@@ -30,7 +32,7 @@ exports.diff_hours = function(dt2, dt1) {
 /**
  * read data stored
  */
-exports.getAllActus = function() {
+exports.getAllActus = function () {
     let LaUne = [];
     let files = recursive('cache/');
 
@@ -41,7 +43,7 @@ exports.getAllActus = function() {
         });
     });
 
-    files.sort((a, b)=> this.diff_hours(new Date(a.date), new Date(b.date)));
+    files.sort((a, b) => this.diff_hours(new Date(a.date), new Date(b.date)));
 
     return arrayChunk(LaUne, 10);
 };
@@ -50,15 +52,15 @@ exports.getAllActus = function() {
  * creer tepmlate for facebook message_crea tive
  * @param {array} data 
  */
-exports.renderTemplate = function(data) {
- 
+exports.renderTemplate = function (data) {
+
     let elements = [];
 
     data.forEach(el => {
         let currObject = {
-            "image_url":el.image,
+            "image_url": el.image,
             "title": el.title,
-            "subtitle": el.source+" - "+el.date,
+            "subtitle": el.source + " - " + el.date,
             "buttons": [{
                 "type": "web_url",
                 "url": el.link,
@@ -89,14 +91,33 @@ exports.renderTemplate = function(data) {
                 "template_type": "generic",
                 "elements": elements
             }
-        }, 
-        "quick_replies":quickreplies
+        },
+        "quick_replies": quickreplies
     };
 }
 
-exports.retrieveQuickmenus = function(){
+exports.retrieveQuickmenus = function () {
     return [
         { "title": "Latest News", "payload": "LATEST_NEWS" },
-        { "title": "Pharmacie", "payload": "PHARMACIE" }
-      ];
+        { "title": "Currency", "payload": "DEVIZY" }
+    ];
+}
+
+exports.grabsite = function (url) {
+    return new Promise((resolve, reject) => {
+        request({
+            "uri": url,
+            "method": "GET",
+            "strictSSL": false,
+            "headers":{
+                "User-Agent" :"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0"
+            }
+        }, (err, res, body) => {
+            if (!err) {
+                resolve(body);
+            } else {
+                reject(err);
+            }
+        });
+    });
 }

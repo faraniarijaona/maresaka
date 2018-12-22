@@ -1,7 +1,11 @@
 'use strict';
 
 exports.greeting = function (datas) {
-    let lang = '{{locale}}';
+    let lang = {
+        "dynamic_text": {
+            "text": "Welcome {{locale}}! I am Rémi  Maresaka's steed, my mission is to inform you the last breaking news"
+        }
+    };
 
     console.log(lang);
 
@@ -29,7 +33,7 @@ exports.greeting = function (datas) {
         }
     }
 
-    if(datas){
+    if (datas) {
         content.quick_replies = [];
         datas.forEach(element => {
             let t = {
@@ -37,13 +41,13 @@ exports.greeting = function (datas) {
                 "title": element.title,
                 "payload": element.payload
             };
-    
+
             if (element.image) {
                 t.image_url = element.image;
             }
-    
+
             content.quick_replies.push(t);
-    
+
         });
     }
 

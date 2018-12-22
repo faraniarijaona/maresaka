@@ -8,13 +8,16 @@ const
     cron = require('node-cron'),
     cronServie = require('./service/cronService'),
     helper = require('./helper/Helper');
+const scraping = require('./helper/Scraping');
 
+scraping.devizy();
 cronServie.parse(6);
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
-cron.schedule('*/5 * * * *', () => {
+cron.schedule('*/15 * * * *', () => {
     cronServie.parse(6);
+    scraping.devizy();
 });
 
 cron.schedule('28 7 * * *', () => {
@@ -61,7 +64,7 @@ cron.schedule('28 17 * * *', () => {
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
-app.get('/contact', (request, response)=>{
+app.get('/contact', (request, response) => {
     response.status(200).send('contact me on ffaraniarijaona@gmail.com');
 });
 
