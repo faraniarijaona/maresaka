@@ -1,6 +1,7 @@
 const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
-const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBABd4XKZAsGAgzlrPYKKMDeMo1wl1HVyDMweSiErA4sVzRFmtVnHj7kfmUPfTYcumHDRVEaV3MXLeJcHnq6MwIiY32w0rCgMT6HK7CxVpjcOh3hLYN3jf152WiFHBE6cQhCjGsG9SZBydTWIKYEwc6fZCW2ZAIAZDZD",
+
+const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBAAtRYUQfTEhBJtaZAMMxiHB2mecQ1AbmEJCPuu2PI0RAQnmLI8eYV0uYgJNoYP8EIOIK4qi4ulw0Qxdw94wVL8aq0inId8EtCL1bEyuAXEfggdagdGs3EVYo7ZBiRRxTLETt6hmvbdt9smP80lHkkcOkyzEgZDZD",
     helper = require('../helper/Helper');
 
 exports.message = function (sender_psid, received_message) {
