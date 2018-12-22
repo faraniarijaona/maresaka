@@ -61,7 +61,7 @@ cron.schedule('28 17 * * *', () => {
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
-app.post('/contact', (request, response)=>{
+app.get('/contact', (request, response)=>{
     response.status(200).send('contact me on ffaraniarijaona@gmail.com');
 });
 
