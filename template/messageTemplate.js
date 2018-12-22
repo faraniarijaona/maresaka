@@ -3,6 +3,8 @@
 exports.greeting = function (datas) {
     let lang = '{{locale}}';
 
+    console.log(lang);
+
     let content = {
         "dynamic_text": {
             "text": "Welcome {{first_name}}! I am Rémi  Maresaka's steed, my mission is to inform you the last breaking news",
