@@ -130,6 +130,7 @@ exports.sendMessage = function (sender_psid, response) {
     response.quick_replies = [];
     helper.retrieveQuickmenus().forEach(element => {
         let t = {
+            "type":"postback",
             "content_type": "text",
             "title": element.title,
             "payload": element.payload
