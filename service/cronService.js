@@ -96,7 +96,7 @@ exports.broadcastDerniereMinute = function(data) {
         data.forEach(chunk => {
             let mesazy = {
                 "messages": [
-                    helper.renderTemplate(chunk)
+                    helper.renderGenericTemplate(chunk)
                 ]
             };
             return this.doCreateMessage(mesazy, true);
@@ -105,7 +105,7 @@ exports.broadcastDerniereMinute = function(data) {
         helper.getAllActus().forEach(chunk => {
             let mesazy = {
                 "messages": [
-                    helper.renderTemplate(chunk)
+                    helper.renderGenericTemplate(chunk)
                 ]
             };
             return this.doCreateMessage(mesazy, true);

@@ -1,9 +1,10 @@
 'use strict';
 const recursive = require('recursive-readdir-synchronous'),
     fs = require('fs'),
-    arrayChunk = require('array-chunk');
-
-const request = require('request');
+    arrayChunk = require('array-chunk'),
+    request = require('request'),
+    dateformat = require('dateformat'),
+    format = "yyyy-mm-dd HH:MM:ss";
 
 exports.extractHostname = function (url) {
     var hostname;
@@ -52,22 +53,21 @@ exports.getAllActus = function () {
  * creer tepmlate for facebook message_crea tive
  * @param {array} data 
  */
-exports.renderTemplate = function (data) {
-
+exports.renderGenericTemplate = function (data) {
     let elements = [];
-
     data.forEach(el => {
         let currObject = {
             "image_url": el.image,
             "title": el.title,
-            "subtitle": el.source + " - " + el.date,
-            "buttons": [{
-                "type": "web_url",
-                "url": el.link,
-                "title": "VOIR L'ARTICLE"
-            }]
+            "subtitle": el.source + ", " + dateformat(el.date, format),
+            "buttons": [
+                {
+                    "type": "web_url",
+                    "url": el.link,
+                    "title": "VOIR L'ARTICLE"
+                }
+            ]
         };
-
         elements.push(currObject);
     });
 
@@ -109,8 +109,8 @@ exports.grabsite = function (url) {
             "uri": url,
             "method": "GET",
             "strictSSL": false,
-            "headers":{
-                "User-Agent" :"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0"
+            "headers": {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0"
             }
         }, (err, res, body) => {
             if (!err) {

@@ -2,54 +2,22 @@ const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
 
 const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBAAtRYUQfTEhBJtaZAMMxiHB2mecQ1AbmEJCPuu2PI0RAQnmLI8eYV0uYgJNoYP8EIOIK4qi4ulw0Qxdw94wVL8aq0inId8EtCL1bEyuAXEfggdagdGs3EVYo7ZBiRRxTLETt6hmvbdt9smP80lHkkcOkyzEgZDZD",
-    helper = require('../helper/Helper');
+    helper = require('../helper/Helper'),
+    scraping = require('../helper/Scraping');
 
 exports.message = function (sender_psid, received_message) {
     let response;
-
-    console.log(JSON.stringify(received_message));
 
     if (received_message.quick_reply) {
         switch (received_message.quick_reply.payload) {
             case "LATEST_NEWS":
                 this.postback(sender_psid, received_message.quick_reply);
                 break;
+            case "DEVIZY":
+                this.postback(sender_psid, received_message.quick_reply);
+                break;
         }
     } else {
-       /* if (received_message.text) {
-            response = {
-                "text": `You sent the message: "${received_message.text}". Now send me an image!`
-            }
-        } else if (received_message.attachments) {
-            // Get the URL of the message attachment
-            let attachment_url = received_message.attachments[0].payload.url;
-            response = {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [{
-                            "title": "Is this the right picture?",
-                            "subtitle": "Tap a button to answer.",
-                            "image_url": attachment_url,
-                            "buttons": [{
-                                "type": "postback",
-                                "title": "Yes!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "No!",
-                                "payload": "no",
-                            }
-                            ],
-                        }]
-                    }
-                }
-            }
-        }
-        this.sendMessage(sender_psid, response);
-*/
 
     }
 };
@@ -90,7 +58,7 @@ exports.postback = function (sender_psid, received_message) {
                 this.sendMessage(sender_psid, mesazy).then(success => {
                     data.forEach(chunk => {
                         console.log(chunk);
-                        let mesazy = helper.renderTemplate(chunk);
+                        let mesazy = helper.renderGenericTemplate(chunk);
                         this.sendMessage(sender_psid, mesazy);
                     });
                 },
@@ -119,6 +87,8 @@ exports.postback = function (sender_psid, received_message) {
                 this.sendMessage(sender_psid, mesazy);
             }
             break;
+        case "DEVIZY":
+            this.sendMessage(sender_psid, scraping.renderListDevise());
         case "ABOUT":
             let mesazy = {
                 "text": "Maresaka Presse - (c)faraniarijaona Dec 2018"
@@ -148,7 +118,7 @@ exports.sendMessage = function (sender_psid, response) {
         },
         "message": response
     }
-    
+
     return new Promise(function (success, error) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/messages",
