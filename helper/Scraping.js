@@ -42,7 +42,7 @@ exports.renderListDevise = function () {
     ];
     listDevise.forEach(el => {
         let currObject = {
-            "title": "1" + el.devises + " = " + el.mid + " Ar",
+            "title": "1" + el.devises + " = " + el.mid.replace(' ','') + " Ar",
             "subtitle": el.daty
         };
 
