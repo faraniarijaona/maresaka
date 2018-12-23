@@ -68,6 +68,10 @@ app.get('/contact', (request, response) => {
     response.status(200).send('contact me on ffaraniarijaona@gmail.com');
 });
 
-app.listen(process.env.PORT || 443, () => {
+app.get('/assets/*', (req, res) => {
+    res.sendFile(__dirname + req.path);
+});
+
+app.listen(process.env.PORT || 12223, () => {
     console.log('webhook is listening');
 });

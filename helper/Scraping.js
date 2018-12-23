@@ -29,7 +29,17 @@ exports.devizy = () => {
 exports.renderListDevise = function () {
     let listDevise = JSON.parse(fs.readFileSync('cache/devizy.json'));
 
-    let elements = [];
+    let elements = [{
+        "title": "Banky Foiben'i Madagasikara",
+        "image_url": "https://pure-ravine-80893.herokuapp.com/assets/image/bfm.jpg",
+        "default_action": {
+            "type": "web_url",
+            "url": "https://www.banky-foibe.mg",
+            "messenger_extensions": false,
+            "webview_height_ratio": "tall"
+        }
+    }
+    ];
     listDevise.forEach(el => {
         let currObject = {
             "title": "1" + el.devises + " = " + el.mid + " Ar",
@@ -42,6 +52,15 @@ exports.renderListDevise = function () {
             }
         };
 
+        switch (el.devises) {
+            case "USD":
+                currObject.image_url = "https://pure-ravine-80893.herokuapp.com/assets/image/usd.jpg";
+                break
+            case "EUR":
+                currObject.image_url = "https://pure-ravine-80893.herokuapp.com/assets/image/euro.jpg";
+                break
+        }
+
         elements.push(currObject);
     });
 
@@ -50,7 +69,7 @@ exports.renderListDevise = function () {
             "type": "template",
             "payload": {
                 "template_type": "list",
-                "top_element_style": "compact",
+                "top_element_style": "large",
                 "elements": elements
             }
         }
