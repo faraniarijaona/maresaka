@@ -1,13 +1,6 @@
 'use strict';
 
 exports.greeting = function (datas) {
-    let lang = {
-        "dynamic_text": {
-            "text": "Welcome {{locale}}! I am Rémi  Maresaka's steed, my mission is to inform you the last breaking news"
-        }
-    };
-
-    console.log(lang);
 
     let content = {
         "dynamic_text": {
@@ -16,7 +9,7 @@ exports.greeting = function (datas) {
         }
     };
 
-    if (lang.includes('mg')) {
+   /* if (lang.includes('mg')) {
         content = {
             "dynamic_text": {
                 "text": "Tongasoa {{first_name}}! Rémi no anarako, irakiraka ato amin'ny \"Maresaka\", manana adidy mampahafantatra anao ireo vaovao farany mitranga aho",
@@ -31,7 +24,7 @@ exports.greeting = function (datas) {
                 "fallback_text": "Bienvenue! Je suis Rémi, coursier chez Maresaka, ma mission c'est de vous informer les dernières minutes des actus"
             }
         }
-    }
+    }*/
 
     if (datas) {
         content.quick_replies = [];
