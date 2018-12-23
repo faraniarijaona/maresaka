@@ -33,7 +33,7 @@ exports.renderListDevise = function () {
     listDevise.forEach(el => {
         let currObject = {
             "title": "1" + el.devises + " = " + el.mid + " Ar",
-            "subtitle": helper.extractHostname(el.source) + " - " + el.daty,
+            "subtitle": el.daty,
             "default_action": {
                 "type": "web_url",
                 "url": el.source,

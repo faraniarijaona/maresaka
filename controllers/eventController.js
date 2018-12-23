@@ -89,6 +89,7 @@ exports.postback = function (sender_psid, received_message) {
             break;
         case "DEVIZY":
             this.sendMessage(sender_psid, scraping.renderListDevise());
+            break
         case "ABOUT":
             let mesazy = {
                 "text": "Maresaka Presse - (c)faraniarijaona Dec 2018"
