@@ -63,7 +63,7 @@ exports.renderListDevise = function () {
             "type": "template",
             "payload": {
                 "template_type": "list",
-               
+                "top_element_style": "LARGE",
                 "elements": elements
             }
         }
