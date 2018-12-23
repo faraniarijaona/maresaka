@@ -31,7 +31,7 @@ exports.renderListDevise = function () {
 
     let elements = [{
         "title": "Banky Foiben'i Madagasikara",
-       // "image_url": "https://pure-ravine-80893.herokuapp.com/assets/image/bfm.jpg",
+        "image_url": "https://pure-ravine-80893.herokuapp.com/assets/image/bfm.jpg",
         "subtitle":"www.banky-foibe.mg",
         "default_action": {
             "type": "web_url",
