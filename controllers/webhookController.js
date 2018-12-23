@@ -26,7 +26,6 @@ exports.webhook = function (request, response) {
 
 exports.webhookPost = function (request, response) {
     var params = request.body;
-    console.log(JSON.stringify(params));
     if (params.object && params.entry) {
         response.sendStatus(200);
         (params.entry).forEach(element => {

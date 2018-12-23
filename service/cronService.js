@@ -50,7 +50,6 @@ exports.parse = function(offset) {
 
             writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function(err) {
                 if (err) {
-                    console.log(err);
                 }
             });
         })();
@@ -124,7 +123,6 @@ exports.doCreateMessage = function(mesazy, withNotification) {
             "json": mesazy
         }, (err, res, body) => {
             if (!err) {
-                console.log(res);
                 pp.doSend(body, withNotification).then(
                     sendBodyResponse => {
                         resolve({ "sendMessage": sendBodyResponse, "createMessage": body });

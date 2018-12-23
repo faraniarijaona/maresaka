@@ -67,8 +67,6 @@ exports.quickmenu = function (datas, message) {
 
     });
 
-    console.log(JSON.stringify(content));
-
     return content;
 }
 
