@@ -20,12 +20,12 @@ const PAGE_ACCESS_TOKEN = "EAAgXXSZAMUjkBAAtRYUQfTEhBJtaZAMMxiHB2mecQ1AbmEJCPuu2
 
 const { JSDOM } = jsdom;
 
-exports.parse = function(offset) {
+exports.parse = function (offset) {
     let list_feed = feedSource.getSource();
 
     list_feed.forEach(feed => {
 
-        (async() => {
+        (async () => {
             let res = await parser.parseURL(feed);
             let resp_to_write = [];
             res.items.forEach(item => {
@@ -48,15 +48,17 @@ exports.parse = function(offset) {
                 }
             });
 
-            writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function(err) {
-                if (err) {
-                }
-            });
+            if (resp_to_write.length > 0) {
+                writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function (err) {
+                    if (err) {
+                    }
+                });
+            }
         })();
     });
 };
 
-exports.broadcastDerniereMinuteHeader = function() {
+exports.broadcastDerniereMinuteHeader = function () {
     let lang = '{{locale}}';
 
     let mesazy = {
@@ -90,7 +92,7 @@ exports.broadcastDerniereMinuteHeader = function() {
     return this.doCreateMessage(mesazy);
 }
 
-exports.broadcastDerniereMinute = function(data) {
+exports.broadcastDerniereMinute = function (data) {
     if (data) {
         data.forEach(chunk => {
             let mesazy = {
@@ -112,10 +114,10 @@ exports.broadcastDerniereMinute = function(data) {
     }
 };
 
-exports.doCreateMessage = function(mesazy, withNotification) {
+exports.doCreateMessage = function (mesazy, withNotification) {
     let pp = this;
-    
-    return new Promise(function(resolve, reject) {
+
+    return new Promise(function (resolve, reject) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/message_creatives",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },
@@ -139,7 +141,7 @@ exports.doCreateMessage = function(mesazy, withNotification) {
     })
 };
 
-exports.doSend = function(body_message_creative, withNotification) {
+exports.doSend = function (body_message_creative, withNotification) {
     let req_body = {
         "message_creative_id": body_message_creative.message_creative_id,
         "notification_type": "SILENT_PUSH",
@@ -156,7 +158,7 @@ exports.doSend = function(body_message_creative, withNotification) {
         };
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/broadcast_messages",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },
