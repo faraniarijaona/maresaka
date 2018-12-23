@@ -4,7 +4,7 @@ const recursive = require('recursive-readdir-synchronous'),
     arrayChunk = require('array-chunk'),
     request = require('request'),
     dateformat = require('dateformat'),
-    format = "yyyy-mm-dd HH:MM:ss";
+    format = "yyyy-mm-dd HH:MM";
 
 exports.extractHostname = function (url) {
     var hostname;
