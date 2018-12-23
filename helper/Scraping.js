@@ -43,13 +43,7 @@ exports.renderListDevise = function () {
     listDevise.forEach(el => {
         let currObject = {
             "title": "1" + el.devises + " = " + el.mid + " Ar",
-            "subtitle": el.daty,
-            "default_action": {
-                "type": "web_url",
-                "url": el.source,
-                "messenger_extensions": false,
-                "webview_height_ratio": "tall"
-            }
+            "subtitle": el.daty
         };
 
         switch (el.devises) {
