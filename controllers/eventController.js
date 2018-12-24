@@ -18,7 +18,9 @@ exports.message = function (sender_psid, received_message) {
                 break;
         }
     } else {
-
+        if(received_message.text === "hello"){
+           this.sendMessage(sender_psid, {"text":"hello"});
+           }
     }
 };
 
