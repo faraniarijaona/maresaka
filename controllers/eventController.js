@@ -18,9 +18,10 @@ exports.message = function (sender_psid, received_message) {
                 break;
         }
     } else {
-        if(received_message.text === "hello"){
-           this.sendMessage(sender_psid, {"text":"hello"});
-           }
+           this.sendMessage(sender_psid, "dynamic_text": {
+                        "text": "Hello {{first_name}}, what do you want to do?",
+                        "fallback_text": "Hello, what do you want to do?"
+                    });
     }
 };
 
