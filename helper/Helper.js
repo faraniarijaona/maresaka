@@ -99,7 +99,7 @@ exports.renderGenericTemplate = function (data) {
 exports.retrieveQuickmenus = function () {
     return [
         { "title": "Latest News", "payload": "LATEST_NEWS" },
-        { "title": "Currency", "payload": "DEVIZY" }
+        { "title": "Ariary rate", "payload": "DEVIZY" }
     ];
 }
 
