@@ -18,12 +18,11 @@ exports.devizy = () => {
                 let usd = JSON.parse(success).data.data.datagraph.dataUsd;
                   let   keys = Object.keys(usd);
 
-                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid":usd[keys[keys.length - 1]], "daty": keys[keys.length - 1] });
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid":usd[keys[keys.length - 1]]+"", "daty": keys[keys.length - 1] });
 
-                console.log(usd);
                 let dataEuro = JSON.parse(success).data.data.datagraph.dataEuro;
                 keys = Object.keys(dataEuro);
-                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": dataEuro[keys[keys.length - 1]], "daty": keys[keys.length - 1] });
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": dataEuro[keys[keys.length - 1]]+"", "daty": keys[keys.length - 1] });
             }
 
             writeFile('cache/devizy.json', res, function (err) {
