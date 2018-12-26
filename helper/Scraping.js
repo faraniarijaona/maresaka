@@ -13,14 +13,20 @@ exports.devizy = () => {
             JSON.parse(success).data.data.content.forEach(element => {
                 res.push({ "source": "https://www.banky-foibe.mg", "devises": element.devises, "mid": element.mid, "daty": JSON.parse(success).data.data.date });
             });
+            
+            if (res.length === 0) {
+                let usd = JSON.parse(success).data.data.datagraph.dataUsd;
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": usd[usd.length - 1], "daty": usd[usd.length - 1] });
 
-            if (res.length > 0) {
-                writeFile('cache/devizy.json', res, function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
+                let euro = JSON.parse(success).data.data.datagraph.dataEuro;
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": dataEuro[dataEuro.length - 1], "daty": dataEuro[dataEuro.length - 1] });
             }
+
+            writeFile('cache/devizy.json', res, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
         },
             error => {
                 console.log(error);
