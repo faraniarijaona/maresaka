@@ -13,13 +13,17 @@ exports.devizy = () => {
             JSON.parse(success).data.data.content.forEach(element => {
                 res.push({ "source": "https://www.banky-foibe.mg", "devises": element.devises, "mid": element.mid, "daty": JSON.parse(success).data.data.date });
             });
-            
+
             if (res.length === 0) {
                 let usd = JSON.parse(success).data.data.datagraph.dataUsd;
-                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": usd[usd.length - 1], "daty": usd[usd.length - 1] });
+                  let   keys = Object.keys(usd);
 
-                let euro = JSON.parse(success).data.data.datagraph.dataEuro;
-                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": dataEuro[dataEuro.length - 1], "daty": dataEuro[dataEuro.length - 1] });
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid":usd[keys[keys.length - 1]], "daty": keys[keys.length - 1] });
+
+                console.log(usd);
+                let dataEuro = JSON.parse(success).data.data.datagraph.dataEuro;
+                keys = Object.keys(dataEuro);
+                res.push({ "source": "https://www.banky-foibe.mg", "devises": "EUR", "mid": dataEuro[keys[keys.length - 1]], "daty": keys[keys.length - 1] });
             }
 
             writeFile('cache/devizy.json', res, function (err) {
