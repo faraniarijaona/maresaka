@@ -51,6 +51,7 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
+    response.sendStatus(200);
     let data = helper.getAllActus();
     if (data.length > 0) {
         let lang = request.query.locale;
@@ -81,7 +82,7 @@ exports.latestnews = function (request, response) {
             };
         }
 
-        /*this.sendMessage(sender_psid, mesazy).then(success => {
+        this.sendMessage(sender_psid, mesazy).then(success => {
             data.forEach(chunk => {
                 let mesazy = helper.renderGenericTemplate(chunk);
                 this.sendMessage(sender_psid, mesazy);
@@ -90,9 +91,8 @@ exports.latestnews = function (request, response) {
             error => {
 
             }
-        );*/
+        );
 
-        response.send(mesazy);
     }
 
 
