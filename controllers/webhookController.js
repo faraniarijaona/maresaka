@@ -117,7 +117,7 @@ exports.latestnews = function (request, response) {
 }
 
 exports.bfm = function(request, response){
-    response.sendStatus(200).send(scraping.renderListDevise());
+    response.send(scraping.renderListDevise());
    /* let messenger_id = request.query['messenger user id'];
     eventController.sendMessage(messenger_id, scraping.renderListDevise());*/
 }
