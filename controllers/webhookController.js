@@ -51,8 +51,7 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    let data = helper.getAllA
-    ctus();
+    let data = helper.getAllActus();
     if (data.length > 0) {
         let lang = request.query.locale;
         let first_name = request.query.first_name;
