@@ -66,6 +66,8 @@ app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
 
 app.get('/latestnews',webhook_controller.latestnews);
+app.get('/rate',webhook_controller.bfm);
+
 app.get('/contact', (request, response) => {
     response.status(200).send('contact me on ffaraniarijaona@gmail.com');
 });
