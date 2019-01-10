@@ -20,7 +20,7 @@ cron.schedule('*/15 * * * *', () => {
     scraping.devizy();
 });
 
-cron.schedule('28 7 * * *', () => {
+/*cron.schedule('28 7 * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
         cronServie.broadcastDerniereMinuteHeader().then(
@@ -60,10 +60,12 @@ cron.schedule('28 17 * * *', () => {
             }
         );
     }
-});
+});*/
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
+
+app.get('/latestnews',webhook_controller.latestnews);
 app.get('/contact', (request, response) => {
     response.status(200).send('contact me on ffaraniarijaona@gmail.com');
 });

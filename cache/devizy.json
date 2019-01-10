@@ -1,14 +1,14 @@
 [
   {
     "source": "https://www.banky-foibe.mg",
-    "devises": "EUR",
-    "mid": "3473.69",
-    "daty": "2018-12-21"
+    "devises": "USD",
+    "mid": "3 556,59",
+    "daty": "2019-01-10"
   },
   {
     "source": "https://www.banky-foibe.mg",
     "devises": "EUR",
-    "mid": "3982.53",
-    "daty": "2018-12-21"
+    "mid": "4 103,40",
+    "daty": "2019-01-10"
   }
 ]
