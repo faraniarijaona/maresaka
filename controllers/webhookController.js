@@ -55,7 +55,8 @@ exports.latestnews = function (request, response) {
     let data = helper.getAllActus();
     if (data.length > 0) {
         let lang = request.query.locale;
-        let name = request.query.first_name;
+        let name = request.query['first name'];
+        let messenger_id = request.query['messenger user id'];
 
         console.log(request.query);
 
@@ -82,10 +83,10 @@ exports.latestnews = function (request, response) {
             };
         }
 
-        this.sendMessage(sender_psid, mesazy).then(success => {
+        eventController.sendMessage(messenger_id, mesazy).then(success => {
             data.forEach(chunk => {
                 let mesazy = helper.renderGenericTemplate(chunk);
-                this.sendMessage(sender_psid, mesazy);
+                eventController.sendMessage(messenger_id, mesazy);
             });
         },
             error => {
