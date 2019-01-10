@@ -20,7 +20,7 @@ cron.schedule('*/15 * * * *', () => {
     scraping.devizy();
 });
 
-/*cron.schedule('28 7 * * *', () => {
+cron.schedule('30 7,12,17 * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
         cronServie.broadcastDerniereMinuteHeader().then(
@@ -33,34 +33,6 @@ cron.schedule('*/15 * * * *', () => {
         );
     }
 });
-
-cron.schedule('28 12 * * *', () => {
-    let data = helper.getAllActus();
-    if (data.length > 0) {
-        cronServie.broadcastDerniereMinuteHeader().then(
-            success => {
-                cronServie.broadcastDerniereMinute();
-            },
-            error => {
-
-            }
-        );
-    }
-});
-
-cron.schedule('28 17 * * *', () => {
-    let data = helper.getAllActus();
-    if (data.length > 0) {
-        cronServie.broadcastDerniereMinuteHeader().then(
-            success => {
-                cronServie.broadcastDerniereMinute();
-            },
-            error => {
-
-            }
-        );
-    }
-});*/
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
