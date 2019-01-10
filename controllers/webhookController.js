@@ -1,6 +1,7 @@
 'use strict';
 var eventController = require('./eventController');
 const helper = require('../helper/Helper');
+const scraping = require('../helper/Scraping');
 
 exports.webhook = function (request, response) {
     let VERIFY_TOKEN = "2081c182-fc9c-11e8-8eb2-f2801f1b9fd1";
@@ -53,11 +54,12 @@ exports.webhookPost = function (request, response) {
 exports.latestnews = function (request, response) {
     response.sendStatus(200);
     let data = helper.getAllActus();
-    if (data.length > 0) {
-        let lang = request.query.locale;
-        let name = request.query['first name'];
-        let messenger_id = request.query['messenger user id'];
 
+    let lang = request.query.locale;
+    let name = request.query['first name'];
+    let messenger_id = request.query['messenger user id'];
+
+    if (data.length > 0) {
         console.log(request.query);
 
         let mesazy = {
@@ -95,8 +97,31 @@ exports.latestnews = function (request, response) {
         );
 
     }
+    else {
+        let mesazy = {
+            "text": "Nothing special to say"
+        };
+
+        if (lang.includes('fr')) {
+            mesazy = {
+                "text": "Rien de spécial!"
+            };
+        } else if (lang.includes('mg')) {
+            mesazy = {
+                "text": "Tsisy vaovao, tsisy maresaka"
+            };
+        }
+
+        eventController.sendMessage(messenger_id, mesazy);
+    }
 
 
     
+}
+
+exports.bfm = function(request, response){
+    response.sendStatus(200);
+    eventController.sendMessage(messenger_id, scraping.renderListDevise());
+
 }
 
