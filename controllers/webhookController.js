@@ -54,13 +54,13 @@ exports.latestnews = function (request, response) {
     let data = helper.getAllActus();
     if (data.length > 0) {
         let lang = request.query.locale;
-        let first_name = request.query.first_name;
+        let name = request.query.first_name;
 
         console.log(request.query);
 
         let mesazy = {
             "dynamic_text": {
-                "text": "Hi " + first_name + "! There are the latest news",
+                "text": "Hi " + name + "! There are the latest news",
                 "fallback_text": "Hi! There are the latest news"
             }
         };
@@ -68,14 +68,14 @@ exports.latestnews = function (request, response) {
         if (lang.includes('fr')) {
             mesazy = {
                 "dynamic_text": {
-                    "text": "Salut " + first_name + "! Voici les infos de la dernière minute",
+                    "text": "Salut " + name + "! Voici les infos de la dernière minute",
                     "fallback_text": "Salut! Voici les infos de la dernière minute"
                 }
             };
         } else if (lang.includes('mg')) {
             mesazy = {
                 "dynamic_text": {
-                    "text": "Salama " + first_name + "! Ireto ny vaovao farany",
+                    "text": "Salama " + name + "! Ireto ny vaovao farany",
                     "fallback_text": "Salama! Ireto ny vaovao farany"
                 }
             };
