@@ -92,7 +92,7 @@ exports.latestnews = function (request, response) {
             mesazy.messages.push(temp);
         });
 
-        console.log(mesazy);
+        console.log(JSON.stringify(mesazy));
 
     response.send(mesazy);
 
