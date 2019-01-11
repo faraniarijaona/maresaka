@@ -87,6 +87,11 @@ exports.latestnews = function (request, response) {
             };
         }
 
+        data.forEach(chunk => {
+            let temp = helper.renderGenericTemplate(chunk);
+            mesazy.messages.push(temp);
+        });
+
         console.log(mesazy);
 
     response.send(mesazy);
