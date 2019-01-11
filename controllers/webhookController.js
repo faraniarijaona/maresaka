@@ -52,7 +52,6 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    response.sendStatus(200);
     let data = helper.getAllActus();
 
     let lang = request.query.locale;
@@ -63,29 +62,35 @@ exports.latestnews = function (request, response) {
         console.log(request.query);
 
         let mesazy = {
-            "dynamic_text": {
-                "text": "Hi " + name + "! There are the latest news",
-                "fallback_text": "Hi! There are the latest news"
-            }
+            "messages": [
+                {
+                    "text": "Hi " + name + "! There are the latest news"
+                }
+            ]
         };
 
         if (lang.includes('fr')) {
             mesazy = {
-                "dynamic_text": {
-                    "text": "Salut " + name + "! Voici les infos de la dernière minute",
-                    "fallback_text": "Salut! Voici les infos de la dernière minute"
-                }
+                "messages":[
+                    {
+                        "text": "Salut " + name + "! Voici les infos de la dernière minute"
+                    }
+                ]
             };
         } else if (lang.includes('mg')) {
             mesazy = {
-                "dynamic_text": {
-                    "text": "Salama " + name + "! Ireto ny vaovao farany",
-                    "fallback_text": "Salama! Ireto ny vaovao farany"
-                }
+                "messages": [
+                    {
+                        "text": "Salama " + name + "! Ireto ny vaovao farany"
+                    }
+                ]
             };
         }
 
-        eventController.sendMessage(messenger_id, mesazy).then(success => {
+    response.send(mesazy);
+
+
+     /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
             data.forEach(chunk => {
                 let mesazy = helper.renderGenericTemplate(chunk);
                 eventController.sendMessage(messenger_id, mesazy);
@@ -94,29 +99,41 @@ exports.latestnews = function (request, response) {
             error => {
 
             }
-        );
+        );*/
 
     }
     else {
         let mesazy = {
-            "text": "Nothing special to say"
+            "messages": [
+                {
+                    "text": "Nothing special to say"
+                }
+            ]
         };
 
         if (lang.includes('fr')) {
             mesazy = {
-                "text": "Rien de spécial!"
+                "messages": [
+                    {
+                        "text": "Rien de spécial!"
+                    }
+                ]
             };
         } else if (lang.includes('mg')) {
             mesazy = {
-                "text": "Tsisy vaovao, tsisy maresaka"
+                "messages": [
+                    {
+                        "text": "Tsisy vaovao, tsisy maresaka"
+                    }
+                ]
             };
         }
 
-        eventController.sendMessage(messenger_id, mesazy);
+        response.send(mesazy);
     }
 }
 
-exports.bfm = function(request, response){
+exports.bfm = function (request, response) {
     response.sendStatus(200);
     let messenger_id = request.query['messenger user id'];
     eventController.sendMessage(messenger_id, scraping.renderListDevise());
