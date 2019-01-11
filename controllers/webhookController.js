@@ -92,54 +92,8 @@ exports.latestnews = function (request, response) {
             mesazy.messages.push(temp);
         });
 
-        console.log(JSON.stringify(mesazy));
-        response.send({
-            "messages": [
-               {
-                 "attachment":{
-                   "type":"template",
-                   "payload":{
-                    "text":"Ok, I have something for you:",
-                     "template_type":"generic",
-                     "image_aspect_ratio": "square",
-                     "elements":[
-                       {
-                         "title":"Chatfuel Rockets Jersey",
-                         "image_url":"https://rockets.chatfuel.com/assets/shirt.jpg",
-                         "subtitle":"Size: M",
-                         "buttons":[
-                           {
-                             "type":"web_url",
-                             "url":"https://rockets.chatfuel.com/store",
-                             "title":"View Item"
-                           }
-                         ]
-                       },
-                       {
-                         "title":"Chatfuel Rockets Jersey",
-                         "image_url":"https://rockets.chatfuel.com/assets/shirt.jpg",
-                         "subtitle":"Size: L",
-                         "default_action": {
-                           "type": "web_url",
-                           "url": "https://rockets.chatfuel.com/store",
-                           "messenger_extensions": true
-                         },
-                         "buttons":[
-                           {
-                             "type":"web_url",
-                             "url":"https://rockets.chatfuel.com/store",
-                             "title":"View Item"
-                           }
-                         ]
-                       }
-                     ]
-                   }
-                 }
-               }
-             ]
-           });
 
-   /* response.send({
+     response.send({
         "messages": [
           {
             "attachment": {
@@ -170,7 +124,7 @@ exports.latestnews = function (request, response) {
             }
           }
         ]
-      });*/
+      });
 
 
      /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
