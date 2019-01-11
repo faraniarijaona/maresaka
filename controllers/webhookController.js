@@ -63,9 +63,9 @@ exports.latestnews = function (request, response) {
 
         let mesazy = {
             "messages": [
-                {
+               /* {
                     "text": "Hi " + name + "! There are the latest news"
-                }
+                }*/
             ]
         };
 
