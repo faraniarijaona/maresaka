@@ -99,6 +99,7 @@ exports.latestnews = function (request, response) {
                  "attachment":{
                    "type":"template",
                    "payload":{
+                    "text":"Ok, I have something for you:",
                      "template_type":"generic",
                      "image_aspect_ratio": "square",
                      "elements":[
