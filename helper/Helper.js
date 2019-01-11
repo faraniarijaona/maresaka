@@ -91,8 +91,8 @@ exports.renderGenericTemplate = function (data) {
                 "template_type": "generic",
                 "elements": elements
             }
-        },
-        "quick_replies": quickreplies
+        }/*,
+        "quick_replies": quickreplies*/
     };
 }
 
