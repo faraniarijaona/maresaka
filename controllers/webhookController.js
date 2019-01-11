@@ -129,6 +129,11 @@ exports.latestnews = function (request, response) {
             };
         }
 
+        data.forEach(chunk => {
+            let part = helper.renderGenericTemplate(chunk);
+            mesazy.messages.push(part);
+        });
+
         response.send(mesazy);
     }
 }
