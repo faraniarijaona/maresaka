@@ -4,7 +4,7 @@
   "description": "bot backend for maresaka\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Cmessenger \u001b[3~\u001b[3~\u001b[3~\u001b[ba\u001b[3~ckend for mareska",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "forever start index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "faraniarijaona",
@@ -18,6 +18,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "feed-read": "0.0.1",
+    "forever": "^0.15.3",
     "jsdom": "^13.1.0",
     "node-cron": "^2.0.3",
     "recursive-readdir-synchronous": "0.0.4",
