@@ -81,14 +81,7 @@ exports.renderGenericTemplate = function (data) {
                                         "default_action": {
                                             "type": "web_url",
                                             "url": el.link
-                                        },
-                                        "buttons": [
-                                            {
-                                                "type": "web_url",
-                                                "url": el.link,
-                                                "title": "VOIR L'ARTICLE"
-                                            }
-                                        ]
+                                        }
                                     }
                                 ]
                             }
