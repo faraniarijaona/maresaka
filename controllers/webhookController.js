@@ -92,19 +92,8 @@ exports.latestnews = function (request, response) {
 
         data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
-           // mesazy.messages.push(temp);
-           eventController.sendMessage(messenger_id, temp);
+            eventController.sendMessage(messenger_id, temp);
         });
-        /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
-               data.forEach(chunk => {
-                   let mesazy = helper.renderGenericTemplate(chunk);
-                   eventController.sendMessage(messenger_id, mesazy);
-               });
-           },
-               error => {
-   
-               }
-           );*/
 
     }
     else {
@@ -133,24 +122,13 @@ exports.latestnews = function (request, response) {
                 ]
             };
         }
-
-        eventController.sendMessage(messenger_id, mesazy);
-
-        data.forEach(chunk => {
-            let part = helper.renderGenericTemplate(chunk);
-
-            eventController.sendMessage(messenger_id, part);
-        });
-
-
-       // response.send(mesazy);
     }
 }
 
 exports.bfm = function (request, response) {
     response.sendStatus(200);
-    
+
     let messenger_id = request.query['messenger user id'];
-    eventController.sendMessage(messenger_id, scraping.renderListDevise()).then(success=>console.log(success), err=>console.log(err));
+    eventController.sendMessage(messenger_id, scraping.renderListDevise()).then(success => console.log(success), err => console.log(err));
 }
 
