@@ -52,6 +52,7 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
+    response.sendStatus(200);
     let data = helper.getAllActus();
 
     let lang = request.query.locale;
@@ -87,18 +88,13 @@ exports.latestnews = function (request, response) {
             };
         }
 
+        eventController.sendMessage(messenger_id, mesazy);
+
         data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
-            mesazy.messages.push(temp);
+           // mesazy.messages.push(temp);
+           eventController.sendMessage(messenger_id, temp);
         });
-
-        console.log(JSON.stringify(mesazy));
-
-    
-
-        response.send(mesazy);
-
-
         /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
                data.forEach(chunk => {
                    let mesazy = helper.renderGenericTemplate(chunk);
@@ -138,14 +134,16 @@ exports.latestnews = function (request, response) {
             };
         }
 
+        eventController.sendMessage(messenger_id, mesazy);
+
         data.forEach(chunk => {
             let part = helper.renderGenericTemplate(chunk);
 
-            mesazy.messages.push(part);
+            eventController.sendMessage(messenger_id, part);
         });
 
 
-        response.send(mesazy);
+       // response.send(mesazy);
     }
 }
 
