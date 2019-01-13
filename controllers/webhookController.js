@@ -71,7 +71,7 @@ exports.latestnews = function (request, response) {
 
         if (lang.includes('fr')) {
             mesazy = {
-                "messages":[
+                "messages": [
                     {
                         "text": "Salut " + name + "! Voici les infos de la dernière minute"
                     }
@@ -94,19 +94,21 @@ exports.latestnews = function (request, response) {
 
         console.log(JSON.stringify(mesazy));
 
-     response.send(mesazy);
+    
+
+        response.send(mesazy);
 
 
-     /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
-            data.forEach(chunk => {
-                let mesazy = helper.renderGenericTemplate(chunk);
-                eventController.sendMessage(messenger_id, mesazy);
-            });
-        },
-            error => {
-
-            }
-        );*/
+        /*   eventController.sendMessage(messenger_id, mesazy).then(success => {
+               data.forEach(chunk => {
+                   let mesazy = helper.renderGenericTemplate(chunk);
+                   eventController.sendMessage(messenger_id, mesazy);
+               });
+           },
+               error => {
+   
+               }
+           );*/
 
     }
     else {
@@ -138,7 +140,7 @@ exports.latestnews = function (request, response) {
 
         data.forEach(chunk => {
             let part = helper.renderGenericTemplate(chunk);
-        
+
             mesazy.messages.push(part);
         });
 

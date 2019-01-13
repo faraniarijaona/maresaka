@@ -20,7 +20,7 @@ cron.schedule('*/15 * * * *', () => {
     scraping.devizy();
 });
 
-cron.schedule('30 7,12,17 * * *', () => {
+/*cron.schedule('30 7,12,17 * * *', () => {
     let data = helper.getAllActus();
     if (data.length > 0) {
         cronServie.broadcastDerniereMinuteHeader().then(
@@ -32,7 +32,7 @@ cron.schedule('30 7,12,17 * * *', () => {
             }
         );
     }
-});
+});*/
 
 app.get('/webhook', webhook_controller.webhook);
 app.post('/webhook', webhook_controller.webhookPost);
