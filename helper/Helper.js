@@ -61,11 +61,11 @@ exports.renderGenericTemplate = function (data) {
             "title": el.title,
             "subtitle": el.source + ", " + dateformat(el.date, format),
             "buttons": [
-                /*{
+                {
                     "type": "web_url",
                     "url": el.link,
                     "title": "VOIR L'ARTICLE"
-                },*/
+                },
                 {
                     "type": "element_share",
                     "share_contents": {
@@ -81,7 +81,14 @@ exports.renderGenericTemplate = function (data) {
                                         "default_action": {
                                             "type": "web_url",
                                             "url": el.link
-                                        }
+                                        },
+                                        "buttons": [
+                                            {
+                                                "type": "web_url",
+                                                "url": el.link,
+                                                "title": "VOIR L'ARTICLE"
+                                            }
+                                        ]
                                     }
                                 ]
                             }

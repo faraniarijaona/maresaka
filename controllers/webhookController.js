@@ -52,7 +52,60 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    response.sendStatus(200);
+    response.send([
+        {
+            "messages": [
+                {
+                    "text": "Nothing special to say"
+                }
+            ]
+        },
+        {
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "image_aspect_ratio": "square",
+                            "elements": [
+                                {
+                                    "title": "Chatfuel Rockets Jersey",
+                                    "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                    "subtitle": "Size: M",
+                                    "buttons": [
+                                        {
+                                            "type": "web_url",
+                                            "url": "https://rockets.chatfuel.com/store",
+                                            "title": "View Item"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Chatfuel Rockets Jersey",
+                                    "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                    "subtitle": "Size: L",
+                                    "default_action": {
+                                        "type": "web_url",
+                                        "url": "https://rockets.chatfuel.com/store",
+                                        "messenger_extensions": true
+                                    },
+                                    "buttons": [
+                                        {
+                                            "type": "web_url",
+                                            "url": "https://rockets.chatfuel.com/store",
+                                            "title": "View Item"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]);
+    /*response.sendStatus(200);
     let data = helper.getAllActus();
 
     let lang = request.query.locale;
@@ -91,8 +144,8 @@ exports.latestnews = function (request, response) {
 
         data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
-           // mesazy.messages.push(temp);
-           eventController.sendMessage(messenger_id, temp).then(success=>console.log(success), err=>console.log(err));
+            // mesazy.messages.push(temp);
+            eventController.sendMessage(messenger_id, temp).then(success => console.log(success), err => console.log(err));
         });
 
     }
@@ -125,13 +178,71 @@ exports.latestnews = function (request, response) {
 
         eventController.sendMessage(messenger_id, mesazy);
 
-    }
+    }*/
+}
+
+exports.latestnews2 = function (request, response) {
+    response.send([
+        {
+            "messages": [
+                {
+                    "text": "Nothing special to say"
+                }
+            ]
+        },
+        {
+            "messages": [
+                {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "generic",
+                            "image_aspect_ratio": "square",
+                            "elements": [
+                                {
+                                    "title": "Chatfuel Rockets Jersey",
+                                    "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                    "subtitle": "Size: M",
+                                    "buttons": [
+                                        {
+                                            "type": "web_url",
+                                            "url": "https://rockets.chatfuel.com/store",
+                                            "title": "View Item"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Chatfuel Rockets Jersey",
+                                    "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                    "subtitle": "Size: L",
+                                    "default_action": {
+                                        "type": "web_url",
+                                        "url": "https://rockets.chatfuel.com/store",
+                                        "messenger_extensions": true
+                                    },
+                                    "buttons": [
+                                        {
+                                            "type": "web_url",
+                                            "url": "https://rockets.chatfuel.com/store",
+                                            "title": "View Item"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]);
 }
 
 exports.bfm = function (request, response) {
     response.sendStatus(200);
-    
+
     let messenger_id = request.query['messenger user id'];
-    eventController.sendMessage(messenger_id, scraping.renderListDevise()).then(success=>console.log(success), err=>console.log(err));
+    eventController.sendMessage(messenger_id, scraping.renderListDevise()).then(success => console.log(success), err => console.log(err));
 }
+
+
 
