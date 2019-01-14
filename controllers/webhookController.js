@@ -52,7 +52,7 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    response.send(
+    response.send(JSON.stringify(
         {
             "messages": [
                 {
@@ -127,7 +127,7 @@ exports.latestnews = function (request, response) {
                 }
             ]
         }*/
-    );
+    ));
     /*response.sendStatus(200);
     let data = helper.getAllActus();
 
