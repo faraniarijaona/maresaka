@@ -55,6 +55,8 @@ exports.latestnews = function (request, response) {
     response.send(
         {
             "messages": [
+                { "text": "Welcome to the Chatfuel Rockets!" },
+                { "text": "What are you up to?" },
                 {
                     "attachment": {
                         "type": "image",
