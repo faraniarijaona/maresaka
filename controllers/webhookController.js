@@ -64,6 +64,22 @@ exports.latestnews = function (request, response) {
                             "url": "https://rockets.chatfuel.com/assets/welcome.png"
                         }
                     }
+                },
+                {
+                    "attachment": {
+                        "type": "video",
+                        "payload": {
+                            "url": "https://rockets.chatfuel.com/assets/video.mp4"
+                        }
+                    }
+                },
+                {
+                    "attachment": {
+                        "type": "file",
+                        "payload": {
+                            "url": "https://rockets.chatfuel.com/assets/ticket.pdf"
+                        }
+                    }
                 }
             ]
         }
