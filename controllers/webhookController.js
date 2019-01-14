@@ -97,8 +97,7 @@ exports.latestnews = function (request, response) {
                             ]
                         }
                     }
-                    ]
-        }
+                }
             ]
         }
     );
