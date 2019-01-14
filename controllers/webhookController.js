@@ -52,82 +52,82 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    response.send({
+    /*  response.send({
+          "messages": [
+              {
+                  "attachment": {
+                      "type": "template",
+                      "payload": {
+                          "template_type": "generic",
+                          "image_aspect_ratio": "square",
+                          "elements": [
+                              {
+                                  "title": "Chatfuel Rockets Jersey",
+                                  "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                  "subtitle": "Size: M",
+                                  "buttons": [
+                                      {
+                                          "type": "web_url",
+                                          "url": "https://rockets.chatfuel.com/store",
+                                          "title": "View Item"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "title": "Chatfuel Rockets Jersey",
+                                  "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
+                                  "subtitle": "Size: L",
+                                  "default_action": {
+                                      "type": "web_url",
+                                      "url": "https://rockets.chatfuel.com/store",
+                                      "messenger_extensions": true
+                                  },
+                                  "buttons": [
+                                      {
+                                          "type": "web_url",
+                                          "url": "https://rockets.chatfuel.com/store",
+                                          "title": "View Item"
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  }
+              }
+          ]
+      }*/
+    /*{
         "messages": [
+            { "text": "Welcome to the Chatfuel Rockets!" },
+            { "text": "What are you up to?" },
             {
                 "attachment": {
-                    "type": "template",
+                    "type": "image",
                     "payload": {
-                        "template_type": "generic",
-                        "image_aspect_ratio": "square",
-                        "elements": [
-                            {
-                                "title": "Chatfuel Rockets Jersey",
-                                "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
-                                "subtitle": "Size: M",
-                                "buttons": [
-                                    {
-                                        "type": "web_url",
-                                        "url": "https://rockets.chatfuel.com/store",
-                                        "title": "View Item"
-                                    }
-                                ]
-                            },
-                            {
-                                "title": "Chatfuel Rockets Jersey",
-                                "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
-                                "subtitle": "Size: L",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://rockets.chatfuel.com/store",
-                                    "messenger_extensions": true
-                                },
-                                "buttons": [
-                                    {
-                                        "type": "web_url",
-                                        "url": "https://rockets.chatfuel.com/store",
-                                        "title": "View Item"
-                                    }
-                                ]
-                            }
-                        ]
+                        "url": "https://rockets.chatfuel.com/assets/welcome.png"
+                    }
+                }
+            },
+            {
+                "attachment": {
+                    "type": "video",
+                    "payload": {
+                        "url": "https://rockets.chatfuel.com/assets/video.mp4"
+                    }
+                }
+            },
+            {
+                "attachment": {
+                    "type": "file",
+                    "payload": {
+                        "url": "https://rockets.chatfuel.com/assets/ticket.pdf"
                     }
                 }
             }
         ]
-    }
-        /*{
-            "messages": [
-                { "text": "Welcome to the Chatfuel Rockets!" },
-                { "text": "What are you up to?" },
-                {
-                    "attachment": {
-                        "type": "image",
-                        "payload": {
-                            "url": "https://rockets.chatfuel.com/assets/welcome.png"
-                        }
-                    }
-                },
-                {
-                    "attachment": {
-                        "type": "video",
-                        "payload": {
-                            "url": "https://rockets.chatfuel.com/assets/video.mp4"
-                        }
-                    }
-                },
-                {
-                    "attachment": {
-                        "type": "file",
-                        "payload": {
-                            "url": "https://rockets.chatfuel.com/assets/ticket.pdf"
-                        }
-                    }
-                }
-            ]
-        }*/
-    );
-    /*response.sendStatus(200);
+    }*/
+
+    response.sendStatus(200);
     let data = helper.getAllActus();
 
     let lang = request.query.locale;
@@ -200,7 +200,7 @@ exports.latestnews = function (request, response) {
 
         eventController.sendMessage(messenger_id, mesazy);
 
-    }*/
+    }
 }
 
 exports.latestnews2 = function (request, response) {
