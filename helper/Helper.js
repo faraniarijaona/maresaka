@@ -57,7 +57,6 @@ exports.renderGenericTemplate = function (data) {
     let elements = [];
     data.forEach(el => {
         let currObject = {
-            "image_url": el.image,
             "title": el.title,
             "subtitle": el.source + ", " + dateformat(el.date, format),
             "buttons": [
@@ -68,7 +67,10 @@ exports.renderGenericTemplate = function (data) {
                 }
             ]
         };
-        console.log(currObject);
+
+        if(el.image)
+            currObject["image_url"] = el.image;
+
         elements.push(currObject);
     });
 
