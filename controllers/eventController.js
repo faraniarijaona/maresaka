@@ -1,7 +1,7 @@
 const request = require('request');
 const messageTemplate = require('../template/messageTemplate');
 
-const PAGE_ACCESS_TOKEN = "EAADSJLU5ZBrsBAOgWYV9Lt0duPYkCL88P6TcxQXX7fQfg7UhmhvQfv74aso0nmJdif6qAS2KZAZBoRY5l8aaQjUf2AOkV9VWZBBkimAkuKmsgMDlXiZC213dDjQIF1rwUWQx87cWyeECe013zqU9B8WDdErGIM6ZBhB2ZApldNbUAZDZD",
+const PAGE_ACCESS_TOKEN = "EAADSJLU5ZBrsBAFHivTi4ZAXSamS78ECK8ZAC1XnlOZAvMNXTFP6bTT9Q99mcuAZAtb0x4FDQxoZCLIZCFVZBqn1cKpqjqv8wutw8x91g8xQSmaXBC1jdJ4WE3FNmY9SDigb7DRUOMervWfNCVi0aFmnbF7DTi367SKpRuhEt5WhqqFxTZArCllH0",
     helper = require('../helper/Helper'),
     scraping = require('../helper/Scraping');
 
