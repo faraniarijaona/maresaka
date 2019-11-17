@@ -38,10 +38,12 @@ exports.getAllActus = function () {
     let files = recursive('cache/');
 
     files.forEach(file => {
-        const data = JSON.parse(fs.readFileSync(file));
-        data.forEach(d => {
-            LaUne.push(d);
-        });
+        if(!file.includes("devizy")){
+            const data = JSON.parse(fs.readFileSync(file));
+            data.forEach(d => {
+                LaUne.push(d);
+            });
+        }
     });
 
     files.sort((a, b) => this.diff_hours(new Date(a.date), new Date(b.date)));
@@ -72,7 +74,7 @@ exports.renderGenericTemplate = function (data) {
             currObject["image_url"] = el.image;
 
         console.log(currObject);
-        
+
         elements.push(currObject);
     });
 
