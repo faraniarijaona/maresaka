@@ -52,80 +52,6 @@ exports.webhookPost = function (request, response) {
 }
 
 exports.latestnews = function (request, response) {
-    /*  response.send({
-          "messages": [
-              {
-                  "attachment": {
-                      "type": "template",
-                      "payload": {
-                          "template_type": "generic",
-                          "image_aspect_ratio": "square",
-                          "elements": [
-                              {
-                                  "title": "Chatfuel Rockets Jersey",
-                                  "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
-                                  "subtitle": "Size: M",
-                                  "buttons": [
-                                      {
-                                          "type": "web_url",
-                                          "url": "https://rockets.chatfuel.com/store",
-                                          "title": "View Item"
-                                      }
-                                  ]
-                              },
-                              {
-                                  "title": "Chatfuel Rockets Jersey",
-                                  "image_url": "https://rockets.chatfuel.com/assets/shirt.jpg",
-                                  "subtitle": "Size: L",
-                                  "default_action": {
-                                      "type": "web_url",
-                                      "url": "https://rockets.chatfuel.com/store",
-                                      "messenger_extensions": true
-                                  },
-                                  "buttons": [
-                                      {
-                                          "type": "web_url",
-                                          "url": "https://rockets.chatfuel.com/store",
-                                          "title": "View Item"
-                                      }
-                                  ]
-                              }
-                          ]
-                      }
-                  }
-              }
-          ]
-      }*/
-    /*{
-        "messages": [
-            { "text": "Welcome to the Chatfuel Rockets!" },
-            { "text": "What are you up to?" },
-            {
-                "attachment": {
-                    "type": "image",
-                    "payload": {
-                        "url": "https://rockets.chatfuel.com/assets/welcome.png"
-                    }
-                }
-            },
-            {
-                "attachment": {
-                    "type": "video",
-                    "payload": {
-                        "url": "https://rockets.chatfuel.com/assets/video.mp4"
-                    }
-                }
-            },
-            {
-                "attachment": {
-                    "type": "file",
-                    "payload": {
-                        "url": "https://rockets.chatfuel.com/assets/ticket.pdf"
-                    }
-                }
-            }
-        ]
-    }*/
 
     response.sendStatus(200);
     let data = helper.getAllActus();
@@ -164,11 +90,11 @@ exports.latestnews = function (request, response) {
 
         eventController.sendMessage(messenger_id, mesazy);
 
-        data.forEach(chunk => {
+       /* data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
             // mesazy.messages.push(temp);
             eventController.sendMessage(messenger_id, temp).then(success => console.log(success), err => console.log(err));
-        });
+        });*/
 
     }
     else {
