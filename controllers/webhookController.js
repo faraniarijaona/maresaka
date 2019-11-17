@@ -92,7 +92,7 @@ exports.latestnews = function (request, response) {
 
        data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
-            eventController.sendMessage(messenger_id, temp).then(success , err => console.log(err));
+            eventController.sendMessage(messenger_id, temp).then(success =>{}, err => console.log(err));
         });
 
     }
