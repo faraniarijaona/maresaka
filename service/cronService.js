@@ -20,7 +20,7 @@ const PAGE_ACCESS_TOKEN = "EAADSJLU5ZBrsBAFHivTi4ZAXSamS78ECK8ZAC1XnlOZAvMNXTFP6
 
 const { JSDOM } = jsdom;
 
-exports.parse = function ( ) {
+exports.parse = function (offset) {
     let list_feed = feedSource.getSource();
 
     list_feed.forEach(feed => {
