@@ -65,7 +65,7 @@ exports.renderGenericTemplate = function (data) {
                     "type": "web_url",
                     "url": el.link,
                     "title": "VOIR L'ARTICLE"
-                },
+                }/*,
                 {
                     "type": "element_share",
                     "share_contents": {
@@ -94,7 +94,7 @@ exports.renderGenericTemplate = function (data) {
                             }
                         }
                     }
-                }
+                }*/
             ]
         };
         elements.push(currObject);
