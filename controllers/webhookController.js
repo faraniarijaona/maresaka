@@ -53,7 +53,9 @@ exports.webhookPost = function (request, response) {
 
 exports.latestnews = function (request, response) {
 
-    console.log(request.query);
+ /*   { locale: 'en_US',
+  'first name': 'Fety',
+  'messenger user id': '2027736353979437' }*/
 
     response.sendStatus(200);
     let data = helper.getAllActus();
