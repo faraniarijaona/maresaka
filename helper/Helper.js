@@ -68,7 +68,7 @@ exports.renderGenericTemplate = function (data) {
             ]
         };
 
-        if(el.image)
+        if(typeof el.image !== 'undefined')
             currObject["image_url"] = el.image;
 
         elements.push(currObject);
