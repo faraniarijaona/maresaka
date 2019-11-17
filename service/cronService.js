@@ -58,7 +58,7 @@ exports.parse = function (offset) {
 
             }
             catch(error){
-                    
+                  console.log(error);  
             }
         })();
     });
