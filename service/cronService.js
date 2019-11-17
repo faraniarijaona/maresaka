@@ -26,33 +26,39 @@ exports.parse = function (offset) {
     list_feed.forEach(feed => {
 
         (async () => {
-            let res = await parser.parseURL(feed);
-            let resp_to_write = [];
-            res.items.forEach(item => {
-                let t = { title: item.title, link: item.link, content: item.content, category: item.categories, date: item.pubDate, source: helper.extractHostname(item.link) };
-
-                if (item.image) {
-                    if (item.image.$.url) {
-                        t.image = item.image.$.url;
-                    } else if (item.image.$.src) {
-                        t.image = item.image.$.src;
+            try{
+                let res = await parser.parseURL(feed);
+                let resp_to_write = [];
+                res.items.forEach(item => {
+                    let t = { title: item.title, link: item.link, content: item.content, category: item.categories, date: item.pubDate, source: helper.extractHostname(item.link) };
+    
+                    if (item.image) {
+                        if (item.image.$.url) {
+                            t.image = item.image.$.url;
+                        } else if (item.image.$.src) {
+                            t.image = item.image.$.src;
+                        }
                     }
-                }
-
-                if (offset) {
-                    if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
+    
+                    if (offset) {
+                        if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
+                            resp_to_write.push(t);
+                        }
+                    } else {
                         resp_to_write.push(t);
                     }
-                } else {
-                    resp_to_write.push(t);
-                }
-            });
-
-            if (resp_to_write.length > 0) {
-                writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function (err) {
-                    if (err) {
-                    }
                 });
+    
+                if (resp_to_write.length > 0) {
+                    writeFile('cache/' + helper.extractHostname(res.link) + ".json", resp_to_write, function (err) {
+                        if (err) {
+                        }
+                    });
+                }
+
+            }
+            catch(error){
+                    
             }
         })();
     });
