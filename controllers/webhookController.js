@@ -92,7 +92,6 @@ exports.latestnews = function (request, response) {
 
        data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
-            // mesazy.messages.push(temp);
             eventController.sendMessage(messenger_id, temp).then(success => console.log(success), err => console.log(err));
         });
 

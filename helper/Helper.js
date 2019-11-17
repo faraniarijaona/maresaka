@@ -65,38 +65,10 @@ exports.renderGenericTemplate = function (data) {
                     "type": "web_url",
                     "url": el.link,
                     "title": "VOIR L'ARTICLE"
-                }/*,
-                {
-                    "type": "element_share",
-                    "share_contents": {
-                        "attachment": {
-                            "type": "template",
-                            "payload": {
-                                "template_type": "generic",
-                                "elements": [
-                                    {
-                                        "title": el.title,
-                                        "subtitle": el.source + ", " + dateformat(el.date, format),
-                                        "image_url": el.image,
-                                        "default_action": {
-                                            "type": "web_url",
-                                            "url": el.link
-                                        },
-                                        "buttons": [
-                                            {
-                                                "type": "web_url",
-                                                "url": el.link,
-                                                "title": "VOIR L'ARTICLE"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                }*/
+                }
             ]
         };
+        console.log(currObject);
         elements.push(currObject);
     });
 
