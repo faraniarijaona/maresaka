@@ -123,8 +123,6 @@ exports.sendMessage = function (sender_psid, response) {
         "message": response
     }
 
-    console.log(request_body);
-
     return new Promise(function (success, error) {
         request({
             "uri": "https://graph.facebook.com/v2.6/me/messages",
