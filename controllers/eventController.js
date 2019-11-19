@@ -6,7 +6,8 @@ const PAGE_ACCESS_TOKEN = "EAADSJLU5ZBrsBAFHivTi4ZAXSamS78ECK8ZAC1XnlOZAvMNXTFP6
     scraping = require('../helper/Scraping');
 
 exports.message = function (sender_psid, received_message) {
-    let response;
+   
+    console.log("Post back ==> "+received_message.quick_reply.payload)
 
     if (received_message.quick_reply) {
         switch (received_message.quick_reply.payload) {
@@ -40,6 +41,7 @@ exports.message = function (sender_psid, received_message) {
 };
 
 exports.postback = function (sender_psid, received_message) {
+    console.log("Post back ==> "+received_message.payload)
     switch (received_message.payload) {
         case "BEGIN":
             this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
