@@ -20,9 +20,8 @@ const PAGE_ACCESS_TOKEN = "EAADSJLU5ZBrsBAFHivTi4ZAXSamS78ECK8ZAC1XnlOZAvMNXTFP6
 
 const { JSDOM } = jsdom;
 
-exports.parse = function (offset) {
+exports.parseRssFeed = function () {
     let list_feed = feedSource.getSource();
-
     list_feed.forEach(feed => {
 
         (async () => {
@@ -39,14 +38,13 @@ exports.parse = function (offset) {
                             t.image = item.image.$.src;
                         }
                     }
-    
-                    if (offset) {
-                        if (helper.diff_hours(new Date(), new Date(t.date)) <= 6) {
-                            resp_to_write.push(t);
-                        }
-                    } else {
-                        resp_to_write.push(t);
-                    }
+
+                    resp_to_write.push(t);
+
+                    resp_to_write.sort((a,b)=>{return new Date(b.date) - new Date(a.date);});
+
+                    if(resp_to_write.length > 10)
+                        resp_to_write = resp_to_write.slice(0,10);
                 });
     
                 if (resp_to_write.length > 0) {

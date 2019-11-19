@@ -31,65 +31,6 @@ exports.postback = function (sender_psid, received_message) {
         case "BEGIN":
             this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
             break;
-        case "LATEST_NEWS":
-            let data = helper.getAllActus();
-            if (data.length > 0) {
-                let lang = '{{locale}}';
-
-                let mesazy = {
-                    "dynamic_text": {
-                        "text": "Hi {{first_name}}! There are the latest news",
-                        "fallback_text": "Hi! There are the latest news"
-                    }
-                };
-
-                if (lang.includes('fr')) {
-                    mesazy = {
-                        "dynamic_text": {
-                            "text": "Salut {{first_name}}! Voici les infos de la dernière minute",
-                            "fallback_text": "Salut! Voici les infos de la dernière minute"
-                        }
-                    };
-                } else if (lang.includes('mg')) {
-                    mesazy = {
-                        "dynamic_text": {
-                            "text": "Salama {{first_name}}! Ireto ny vaovao farany",
-                            "fallback_text": "Salama! Ireto ny vaovao farany"
-                        }
-                    };
-                }
-
-                this.sendMessage(sender_psid, mesazy).then(success => {
-                    data.forEach(chunk => {
-                        let mesazy = helper.renderGenericTemplate(chunk);
-                        this.sendMessage(sender_psid, mesazy);
-                    });
-                },
-                    error => {
-
-                    }
-                );
-
-            } else {
-                let lang = '{{locale}}';
-
-                let mesazy = {
-                    "text": "Nothing special to say"
-                };
-
-                if (lang.includes('fr')) {
-                    mesazy = {
-                        "text": "Rien de spécial!"
-                    };
-                } else if (lang.includes('mg')) {
-                    mesazy = {
-                        "text": "Tsisy vaovao, tsisy maresaka"
-                    };
-                }
-
-                this.sendMessage(sender_psid, mesazy);
-            }
-            break;
         case "DEVIZY":
             this.sendMessage(sender_psid, scraping.renderListDevise());
             break
@@ -99,6 +40,14 @@ exports.postback = function (sender_psid, received_message) {
             };
             this.sendMessage(sender_psid, mesazy);
             break;
+        default:
+            let data = helper.getAllActus(received_message.payload);
+            data.forEach(chunk => {
+                let mesazy = helper.renderGenericTemplate(chunk);
+                this.sendMessage(sender_psid, mesazy);
+            });
+            break;
+
     }
 };
 

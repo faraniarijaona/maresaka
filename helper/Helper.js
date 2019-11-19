@@ -33,12 +33,12 @@ exports.diff_hours = function (dt2, dt1) {
 /**
  * read data stored
  */
-exports.getAllActus = function () {
+exports.getAllActus = function (key) {
     let LaUne = [];
     let files = recursive('cache/');
 
     files.forEach(file => {
-        if(!file.includes("devizy")){
+        if(!file.includes(key)){
             const data = JSON.parse(fs.readFileSync(file));
             data.forEach(d => {
                 LaUne.push(d);
@@ -72,7 +72,7 @@ exports.renderGenericTemplate = function (data) {
 
         if(typeof el.image !== 'undefined')
             currObject["image_url"] = el.image;
-            
+
         elements.push(currObject);
     });
 
@@ -103,7 +103,9 @@ exports.renderGenericTemplate = function (data) {
 
 exports.retrieveQuickmenus = function () {
     return [
-        { "title": "World News", "payload": "LATEST_NEWS" },
+        { "title": "Local News", "payload": "orange" },
+        { "title": "BBC", "payload": "bbc" },
+        { "title": "RFI", "payload": "rfi" },
         { "title": "Ariary rate", "payload": "DEVIZY" }
     ];
 }

@@ -4,7 +4,7 @@ const helper = require('./Helper'),
     writeFile = require('write-file'),
     fs = require('fs');
 
-exports.devizy = () => {
+exports.scrap_devizy = () => {
     helper.grabsite("https://www.banky-foibe.mg/admin/wp-json/bfm/cours_devises")
         .then(success => {
 
@@ -80,4 +80,31 @@ exports.renderListDevise = function () {
             }
         }
     };
+}
+
+
+exports.scrap_orange = ()=>{
+    helper.grabsite("https://www.orange.mg/api/depeches/langue/1/count").
+        then(success=>{
+            let start = (success - 10)+""
+
+            helper.grabsite("https://www.orange.mg/api/depeches/langue/1/start/"+start+"/length/10").then(success=>{
+                let res = [];
+                JSON.parse(success).forEach(element=> res.push({title: element.titre, link: "https://actu.orange.mg/depeches/", content: element.contenue,  date: new Date(element.dataPublication), source: helper.extractHostname("https://actu.orange.mg/depeches/")}));
+
+                writeFile('cache/' + helper.extractHostname("https://actu.orange.mg/depeches/") + ".json", res, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            },
+            error=>{
+                console.log(error);
+            }
+            );
+        },
+        error=>{
+            console.log(error);
+        }
+    )
 }

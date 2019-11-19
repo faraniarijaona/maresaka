@@ -10,14 +10,15 @@ const
     helper = require('./helper/Helper');
 const scraping = require('./helper/Scraping');
 
-scraping.devizy();
-cronServie.parse(6);
+scraping.scrap_devizy();
+scraping.scrap_orange();
+cronServie.parseRssFeed();
 /**
  * schedule task for parsing content of feed, scaled each 1 minute
  */
 cron.schedule('*/15 * * * *', () => {
-    cronServie.parse(6);
-    scraping.devizy();
+    cronServie.parseRssFeed();
+    scraping.scrap_devizy();
 });
 
 cron.schedule('30 7,12,17 * * *', () => {
