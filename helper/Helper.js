@@ -37,6 +37,8 @@ exports.getAllActus = function (key) {
     let LaUne = [];
     let files = recursive('cache/');
 
+    console.log(key);
+
     files.forEach(file => {
         if(file.includes(key)){
             const data = JSON.parse(fs.readFileSync(file));

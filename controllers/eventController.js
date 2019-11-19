@@ -40,7 +40,6 @@ exports.message = function (sender_psid, received_message) {
 };
 
 exports.postback = function (sender_psid, received_message) {
-    console.log(received_message.payload);
     switch (received_message.payload) {
         case "BEGIN":
             this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
