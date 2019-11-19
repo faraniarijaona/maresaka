@@ -59,6 +59,8 @@ exports.latestnews = function (request, response) {
   'first name': 'Fety',
   'messenger user id': '2027736353979437' }*/
 
+  console.log(request);
+
     response.sendStatus(200);
     let data = helper.getAllActus();
 
@@ -67,34 +69,6 @@ exports.latestnews = function (request, response) {
     let messenger_id = request.query['messenger user id'];
 
     if (data.length > 0) {
-
-        let mesazy = {
-            "messages": [
-                {
-                    "text": "Hi " + name + "! There are the latest news"
-                }
-            ]
-        };
-
-        if (lang.includes('fr')) {
-            mesazy = {
-                "messages": [
-                    {
-                        "text": "Salut " + name + "! Voici les infos de la dernière minute"
-                    }
-                ]
-            };
-        } else if (lang.includes('mg')) {
-            mesazy = {
-                "messages": [
-                    {
-                        "text": "Salama " + name + "! Ireto ny vaovao farany"
-                    }
-                ]
-            };
-        }
-
-        eventController.sendMessage(messenger_id, mesazy);
 
        data.forEach(chunk => {
             let temp = helper.renderGenericTemplate(chunk);
