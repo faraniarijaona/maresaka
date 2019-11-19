@@ -10,12 +10,25 @@ exports.message = function (sender_psid, received_message) {
 
     if (received_message.quick_reply) {
         switch (received_message.quick_reply.payload) {
-            case "LATEST_NEWS":
-                this.postback(sender_psid, received_message.quick_reply);
-                break;
-            case "DEVIZY":
-                this.postback(sender_psid, received_message.quick_reply);
-                break;
+            case "BEGIN":
+            this.sendMessage(sender_psid, messageTemplate.greeting(helper.retrieveQuickmenus()));
+            break;
+        case "DEVIZY":
+            this.sendMessage(sender_psid, scraping.renderListDevise());
+            break
+        case "ABOUT":
+            let mesazy = {
+                "text": "Maresaka Presse - (c)faraniarijaona Dec 2018"
+            };
+            this.sendMessage(sender_psid, mesazy);
+            break;
+        default:
+            let data = helper.getAllActus(received_message.payload);
+            data.forEach(chunk => {
+                let mesazy = helper.renderGenericTemplate(chunk);
+                this.sendMessage(sender_psid, mesazy);
+            });
+            break;
         }
     } else {
            this.sendMessage(sender_psid, {"dynamic_text": {
@@ -48,7 +61,6 @@ exports.postback = function (sender_psid, received_message) {
                 this.sendMessage(sender_psid, mesazy);
             });
             break;
-
     }
 };
 
