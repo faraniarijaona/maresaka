@@ -59,8 +59,6 @@ exports.latestnews = function (request, response) {
   'first name': 'Fety',
   'messenger user id': '2027736353979437' }*/
 
-   let s = request.
-
     response.sendStatus(200);
     let data = helper.getAllActus(request.query.source);
 
