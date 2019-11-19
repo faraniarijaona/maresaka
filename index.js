@@ -17,8 +17,9 @@ cronServie.parseRssFeed();
  * schedule task for parsing content of feed, scaled each 1 minute
  */
 cron.schedule('*/15 * * * *', () => {
-    cronServie.parseRssFeed();
     scraping.scrap_devizy();
+    scraping.scrap_orange();
+    cronServie.parseRssFeed();
 });
 
 cron.schedule('30 7,12,17 * * *', () => {
