@@ -23,7 +23,7 @@ exports.message = function (sender_psid, received_message) {
             this.sendMessage(sender_psid, mesazy);
             break;
         default:
-            let data = helper.getAllActus(received_message.payload);
+            let data = helper.getAllActus(received_message.quick_reply.payload);
             data.forEach(chunk => {
                 let mesazy = helper.renderGenericTemplate(chunk);
                 this.sendMessage(sender_psid, mesazy);
