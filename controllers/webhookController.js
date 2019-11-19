@@ -37,10 +37,12 @@ exports.webhookPost = function (request, response) {
             let sender_psid = webhook_event.sender.id;
 
             if (webhook_event.message) {
+                console.log("wbh_message ==> "+webhook_event.message)
                 eventController.message(sender_psid, webhook_event.message);
             }
 
             if (webhook_event.postback) {
+                console.log("wbh_post ==> "+webhook_event.postback)
                 eventController.postback(sender_psid, webhook_event.postback);
             }
         });
