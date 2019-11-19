@@ -59,10 +59,10 @@ exports.latestnews = function (request, response) {
   'first name': 'Fety',
   'messenger user id': '2027736353979437' }*/
 
-  console.log(request);
+   let s = request.
 
     response.sendStatus(200);
-    let data = helper.getAllActus();
+    let data = helper.getAllActus(request.query.source);
 
     let lang = request.query.locale;
     let name = request.query['first name'];
