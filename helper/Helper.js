@@ -103,10 +103,11 @@ exports.renderGenericTemplate = function (data) {
 
 exports.retrieveQuickmenus = function () {
     return [
+        { "title": "Ariary rate", "payload": "DEVIZY" },
+        { "title": "Developpez.com", "payload": "developpez.com" },
         { "title": "Local News", "payload": "orange" },
         { "title": "BBC", "payload": "bbc" },
-        { "title": "RFI", "payload": "rfi" },
-        { "title": "Ariary rate", "payload": "DEVIZY" }
+        { "title": "RFI", "payload": "rfi" }
     ];
 }
 
