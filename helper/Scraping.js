@@ -9,7 +9,7 @@ exports.scrap_devizy = () => {
         .then(success => {
 
             let res = [];
-            
+
             JSON.parse(success).data.data.content.forEach(element => {
                 res.push({ "source": "https://www.banky-foibe.mg", "devises": element.devises, "mid": element.mid, "daty": JSON.parse(success).data.data.date });
             });
@@ -90,9 +90,7 @@ exports.scrap_orange = ()=>{
 
             helper.grabsite("https://www.orange.mg/api/depeches/langue/1/start/"+start+"/length/10").then(success=>{
                 let res = [];
-                JSON.parse(success).forEach(element=> res.push({title: element.titre+" "+ element.contenue, link: "https://actu.orange.mg/depeches/", content: element.contenue,  date: new Date(element.dataPublication).toUTCString(), source: helper.extractHostname("https://actu.orange.mg/depeches/")}));
-
-                res.sort((a,b)=>{return new Date(b.date) - new Date(a.date);});
+                JSON.parse(success).forEach(element=> res.push({title: element.titre, link: "https://actu.orange.mg/depeches/", content: element.contenue,  date: new Date(element.dataPublication), source: helper.extractHostname("https://actu.orange.mg/depeches/")}));
 
                 writeFile('cache/' + helper.extractHostname("https://actu.orange.mg/depeches/") + ".json", res, function (err) {
                     if (err) {
