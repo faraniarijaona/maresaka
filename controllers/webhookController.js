@@ -58,9 +58,6 @@ exports.latestnews = function (request, response) {
  /*   { locale: 'en_US',
   'first name': 'Fety',
   'messenger user id': '2027736353979437' }*/
-
-  console.log(request.query.source);
-
     response.sendStatus(200);
     let data = helper.getAllActus(request.query.source);
 
@@ -107,6 +104,13 @@ exports.latestnews = function (request, response) {
 
     }
 }
+
+exports.subscription = (request, response)=>{
+    response.sendStatus(200);
+
+    let messenger_id = request.query['messenger user id'];
+
+};
 
 exports.bfm = function (request, response) {
     response.sendStatus(200);
